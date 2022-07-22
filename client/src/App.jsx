@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import {
   ChakraProvider,
   Box,
@@ -10,16 +11,16 @@ import {
   theme,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import Landing from './pages/Landing/Landing';
+// import { Logo } from './assets/Logo';
 
 function App() {
-
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
+    fetch('/hello')
+      .then(r => r.json())
+      .then(data => setCount(data.count));
   }, []);
 
   return (
@@ -28,22 +29,9 @@ function App() {
         <Grid minH="100vh" p={3}>
           <ColorModeSwitcher justifySelf="flex-end" />
           <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-            <div className="App">
-              <h1>Page Count: {count}</h1>
-            </div>
+            <Routes>
+              <Route exact path="/" element={<Landing />} />
+            </Routes>
           </VStack>
         </Grid>
       </Box>
