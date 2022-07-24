@@ -12,27 +12,27 @@ import {
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import Landing from './pages/Landing/Landing';
+import Signup from './pages/Signup/Signup';
 // import { Logo } from './assets/Logo';
 
 function App() {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    fetch('/hello')
-      .then(r => r.json())
-      .then(data => setCount(data.count));
-  }, []);
+  // useEffect(() => {
+  //   fetch('/hello')
+  //     .then(r => r.json())
+  //     .then(data => setCount(data.count));
+  // }, []);
 
   return (
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl">
         <Grid minH="100vh" p={3}>
           <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
             <Routes>
               <Route exact path="/" element={<Landing />} />
+              <Route exact path="/signup" element={<Signup />} />
             </Routes>
-          </VStack>
         </Grid>
       </Box>
     </ChakraProvider>

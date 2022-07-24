@@ -13,12 +13,12 @@ const root = ReactDOM.createRoot(container);
 
 root.render(
   <StrictMode>
-    <Provider store={store}>
+    {/* <Provider store={store}> */}
       <BrowserRouter>
         <ColorModeScript />
         <App />
       </BrowserRouter>
-    </Provider>
+    {/* </Provider> */}
   </StrictMode>
 );
 

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
     # route to test your configuration
-    get '/hello', to: 'application#hello_world'
+    # get '/hello', to: 'application#hello_world'
     get "/me", to: "members#show"
     post "/signup", to: "members#create"
     post "/login", to: "sessions#create"
