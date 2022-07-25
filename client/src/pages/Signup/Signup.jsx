@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
-import { ChakraProvider, Box, Text, Link, VStack, Code, Grid, theme, Button } from '@chakra-ui/react';
+import { useNavigate } from "react-router-dom";
+import { ChakraProvider, Box, Text, Link, VStack, Code, Grid, theme, Button, FormControl, FormLabel, FormErrorMessage, FormHelperText, Input, InputGroup, InputRightElement, useToast } from '@chakra-ui/react';
 
-import { FormControl, FormLabel, FormErrorMessage, FormHelperText, Input, InputGroup, InputRightElement,} from '@chakra-ui/react'
 
-function Signup() {
-
-//Form+submit POST
+function Signup({setActiveUser}) {
+let navigate = useNavigate()
+const toast = useToast()
 
 const defaultFormData = {
   member_name: "",
@@ -51,8 +51,16 @@ const handleSubmit = (e) => {
   fetch('/signup', postConfig)
       .then(res => res.json())
       .then((newMember => {
-          // onAddUser(newMember);
+          setActiveUser(newMember);
           setFormData(defaultFormData);
+          toast({
+            title: 'Account created.',
+            description: "We've created your account for you.",
+            status: 'success',
+            duration: 3000,
+            isClosable: true,
+          })
+          navigate(`/user-page`, { replace: true })
       }))
 }
 
@@ -136,9 +144,9 @@ Example:
           </Button>
         </InputRightElement>
       </InputGroup>
+      </FormControl>
       <br/>
       <Button type='submit' onClick={handleSubmit}>Sign Up</Button>
-    </FormControl>
 
   </VStack>
 

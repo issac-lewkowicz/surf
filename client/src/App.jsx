@@ -13,6 +13,7 @@ import {
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import Landing from './pages/Landing/Landing';
 import Signup from './pages/Signup/Signup';
+import UserPage from './pages/UserPage/UserPage';
 // import { Logo } from './assets/Logo';
 
 function App() {
@@ -24,14 +25,34 @@ function App() {
   //     .then(data => setCount(data.count));
   // }, []);
 
+  const [currentUser, setCurrentUser] = useState(null)
+  const handleSetUser = (activeUser) => setCurrentUser(activeUser)
+  // const handleLogout = () => setCurrentUser(null)
+
+  useEffect(() => {
+		fetch("/me").then((res) => {
+			if (res.ok) {
+				res.json().then((user) => {
+					setCurrentUser(user);
+
+				});
+			}
+      else {
+        res.json().then(errors => {
+          console.error(errors)
+        })}
+		});
+	}, []);
+
   return (
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl">
         <Grid minH="100vh" p={3}>
           <ColorModeSwitcher justifySelf="flex-end" />
             <Routes>
-              <Route exact path="/" element={<Landing />} />
-              <Route exact path="/signup" element={<Signup />} />
+              <Route exact path="/" element={<Landing setActiveUser={handleSetUser} currentUser={currentUser}/>} />
+              <Route exact path="/signup" element={<Signup setActiveUser={handleSetUser}/>} />
+              <Route exact path="/user-page" element={<UserPage currentUser={currentUser} />} />
             </Routes>
         </Grid>
       </Box>
