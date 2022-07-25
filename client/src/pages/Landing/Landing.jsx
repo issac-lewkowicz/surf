@@ -8,6 +8,8 @@ import { ChakraProvider, Box, Text, Link, VStack, Code, Grid, theme, Button, For
   ModalFooter,
   ModalBody,
   ModalCloseButton, useDisclosure} from '@chakra-ui/react';
+import Signup from '../Signup/Signup';
+
 
 function Landing({setActiveUser, currentUser}) {
   let navigate = useNavigate()
@@ -27,7 +29,24 @@ function Landing({setActiveUser, currentUser}) {
   return (
     <div>Landing SURF
       <Login setActiveUser={setActiveUser}/>
-      <Button>Sign Up</Button>
+      <Button onClick={onOpen}>Sign Up</Button>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Sign Up</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Signup setActiveUser={setActiveUser}/>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3} onClick={onClose}>
+              Close
+            </Button>
+            {/* <Button variant='ghost'>Secondary Action</Button> */}
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </div>
   )
 }

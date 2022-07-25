@@ -51,7 +51,7 @@ function App() {
           <ColorModeSwitcher justifySelf="flex-end" />
             <Routes>
               <Route exact path="/" element={<Landing setActiveUser={handleSetUser} currentUser={currentUser}/>} />
-              <Route exact path="/signup" element={<Signup setActiveUser={handleSetUser}/>} />
+              {/* <Route exact path="/signup" element={<Signup setActiveUser={handleSetUser}/>} /> */}
               <Route exact path="/user-page" element={<UserPage currentUser={currentUser} />} />
             </Routes>
         </Grid>
