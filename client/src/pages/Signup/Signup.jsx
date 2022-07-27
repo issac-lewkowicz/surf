@@ -27,24 +27,15 @@ const updateFormData = (e) => {
   setFormData({ ...formData, [name]: value });
 };
 
-
 const handleSubmit = (e) => {
   e.preventDefault();
-  const newMember = {
-      member_name: formData.member_name,
-      username: formData.username,
-      email: formData.email,
-      image_url: formData.image_url,
-      password: formData.password,
-      password_confirmation: formData.password_confirmation
-  }
 
   const postConfig = {
       method: "POST",
       headers: {
           "Content-Type": "application/json",
       },
-      body: JSON.stringify(newMember),
+      body: JSON.stringify(formData),
   };
 
 
@@ -64,18 +55,6 @@ const handleSubmit = (e) => {
       }))
 }
 
-/*
-Example:
-<div className="class__name">
-  <h2>New Item</h2>
-  <form onSubmit={handleSubmit}>
-      <input type="text" name="name" placeholder="Item Name" value={formData.name} onChange={updateFormData} />
-      <input type="text" name="image" placeholder="Image URL" onChange={updateFormData} value={formData.image} />
-      <input type="number" name="price" step="0.01" placeholder="Price" onChange={updateFormData} value={formData.price} />
-      <button type="submit">Add Item</button>
-  </form>
-</div>
-*/
 
   return (
   <VStack spacing={4}>

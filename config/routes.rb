@@ -16,8 +16,12 @@ Rails.application.routes.draw do
 
     # route to test your configuration
     # get '/hello', to: 'application#hello_world'
-    get "/me", to: "members#show"
-    post "/signup", to: "members#create"
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
+    post "/signup", to: "members#create"
+    get "/me", to: "members#show"
+    
+    # get "/my-teams", to: "members#teams"
+
+
 end

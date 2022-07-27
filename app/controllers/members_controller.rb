@@ -16,7 +16,7 @@ class MembersController < ApplicationController
   # GET '/me'
   def show
     if current_user
-      render json: @current_user, status: :ok
+      render json: @current_user, serializer: MemberShowSerializer
     else
       render json: { errors: "No active session" }, status: :unauthorized
     end
@@ -31,6 +31,16 @@ class MembersController < ApplicationController
     @current_user.destroy
     head :no_content
   end
+
+  # # GET '/created-teams'
+  # def teams
+  #   teams = @current_user.owned_teams 
+  # end
+
+  # # GET '/my-teams'
+  # def teams
+  #   teams = @current_user.teams
+  # end
 
 
   private

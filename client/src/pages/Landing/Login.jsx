@@ -26,17 +26,13 @@ function Login({setActiveUser}) {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    const activeUser = {
-        username: formData.username,
-        password: formData.password
-    }
-  
+
     const postConfig = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(activeUser),
+        body: JSON.stringify(formData),
     };
   
   
