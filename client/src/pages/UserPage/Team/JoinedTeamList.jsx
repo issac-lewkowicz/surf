@@ -6,11 +6,7 @@ import NewTeam from './NewTeam';
 
 
 function JoinedTeamList({currentUser, allTeams, setAllTeams}) {
-
-  // const { isOpen, onOpen, onClose } = useDisclosure()
-
   let joinedTeams = currentUser.teams.map(team => 
-  
   <AccordionItem key={team.id}>
     <h2>
       <AccordionButton>
@@ -23,9 +19,7 @@ function JoinedTeamList({currentUser, allTeams, setAllTeams}) {
     <AccordionPanel pb={4}>
       Team Boards will go here
     </AccordionPanel>
-  </AccordionItem>
-  
-  
+  </AccordionItem>  
   )
 
   const handleAddTeam = (newTeam) => {
