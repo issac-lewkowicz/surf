@@ -10,16 +10,20 @@ function Landing({setActiveUser, currentUser}) {
   const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  if (currentUser !== null) {
-    toast({
-      title: 'Logged In.',
-      description: "You are already logged in - Redirecting.",
-      status: 'success',
-      duration: 3000,
-      isClosable: true,
-    })
-    navigate(`/user-page`, { replace: true })
-  }
+  
+  React.useEffect(() => {
+    if (currentUser !== null) {
+      toast({
+        title: 'Logged In.',
+        description: "You are already logged in - Redirecting.",
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
+      navigate(`/user-page`, { replace: true })
+    }
+    }, [])
+
   return (
     <div>Landing SURF
       <Login setActiveUser={setActiveUser}/>

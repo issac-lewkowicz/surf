@@ -7,7 +7,7 @@ import NewTeam from './Team/NewTeam';
 import Logout from '../../components/Navbar/Logout';
 
 
-function UserPage({currentUser}) {
+function UserPage({currentUser, setActiveUser}) {
   // const { isOpen, onOpen, onClose } = useDisclosure()
   let navigate = useNavigate()
   const toast = useToast()
@@ -28,7 +28,7 @@ function UserPage({currentUser}) {
   console.log(currentUser)
   return (
     <div>
-      <Logout />
+      <Logout setActiveUser={setActiveUser}/>
       <h2>My Teams</h2>
       {/* <OwnedTeamList currentUser={currentUser}/> */}
       {/* <h2>Joined Teams:</h2> */}
