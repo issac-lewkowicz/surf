@@ -6,7 +6,7 @@ import NewTeam from './NewTeam';
 
 
 function JoinedTeamList({currentUser, allTeams, setAllTeams}) {
-  let joinedTeams = currentUser.teams.map(team => 
+  let joinedTeams = (currentUser.teams && currentUser.teams.map(team => 
   <AccordionItem key={team.id}>
     <h2>
       <AccordionButton>
@@ -20,14 +20,14 @@ function JoinedTeamList({currentUser, allTeams, setAllTeams}) {
       Team Boards will go here
     </AccordionPanel>
   </AccordionItem>  
-  )
+  ))
 
   const handleAddTeam = (newTeam) => {
-    joinedTeams = allTeams ===  null ? [...joinedTeams, newTeam]  : [...allTeams, newTeam]
+    joinedTeams = (allTeams ===  null) ? [...joinedTeams, newTeam]  : [...allTeams, newTeam]
     setAllTeams(joinedTeams)
   }
   
-  if (joinedTeams === undefined) return <p>Loading joinedTeams...</p>;
+  // if (joinedTeams === undefined) return <p>Loading joinedTeams...</p>;
 
   return (
     <>

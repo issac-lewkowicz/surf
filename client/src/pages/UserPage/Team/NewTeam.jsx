@@ -6,7 +6,7 @@ import Team from './Team';
 function NewTeam({currentUser, onAddTeam}) {
 
   const [formData, setFormData] = useState("")
-  const [show, setShow] = React.useState(false)
+  const [show, setShow] = useState(false)
   const handleClick = () => setShow(!show)
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,12 +49,12 @@ function NewTeam({currentUser, onAddTeam}) {
           })}
         })
   }
-
+  
   return (
     <div>
       <FormControl>
         {!show && (<Button onClick={handleClick}>Create A Team</Button>)}
-        {show && (<InputGroup><Input type="text" name="team_name" id="team_name_add" placeholder="Enter Team Name" value={formData} onChange={(e) => setFormData(e.target.value)} />
+        {show && (<InputGroup><Input type="text" name="team_name" id="team_name_add" placeholder="Enter Team Name" value={formData} onChange={(e) => setFormData(e.target.value)} /> 
         <Button type='submit' onClick={handleSubmit}>Create</Button></InputGroup>)}
       </FormControl>
     </div>

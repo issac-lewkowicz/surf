@@ -33,7 +33,7 @@ function App() {
 		fetch("/me").then((res) => {
 			if (res.ok) {
 				res.json().then((user) => {
-					setCurrentUser(user);
+					setCurrentUser(user); 
 				});
 			}
       else {
