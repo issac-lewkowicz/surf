@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     member = Member.find_by(username: params[:username])
     if member&.authenticate(params[:password])
       session[:member_id] = member.id
-      render json: member, status: :ok
+      render json: member, serializer: MemberShowSerializer
     else
       render json: { errors: 'Invalid credentials' }, status: :unauthorized
     end

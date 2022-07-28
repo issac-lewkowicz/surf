@@ -10,7 +10,7 @@ class MembersController < ApplicationController
   def create
     new_member = Member.create!(member_params)
     session[:member_id] = new_member.id
-    render json: new_member, status: :created
+    render json: new_member, status: :created #, serializer: MemberShowSerializer,
   end
 
   # GET '/me'
