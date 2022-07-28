@@ -24,6 +24,19 @@ function UserPage({currentUser, setActiveUser}) {
   //   navigate(`/`, { replace: true })
   // }
 
+  useEffect(() => {
+    if (currentUser === null) {
+      toast({
+        title: 'Not Logged In!',
+        description: "You are NOT logged in - Redirecting.",
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
+      navigate(`/`, { replace: true })
+    }
+    }, [])
+
   if ( currentUser === null) return <p>Loading...</p>;
   console.log(currentUser)
   return (
