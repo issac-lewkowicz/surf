@@ -22,7 +22,7 @@ function Landing({setActiveUser, currentUser}) {
       })
       navigate(`/user-page`, { replace: true })
     }
-    }, [])
+    }, [currentUser])
 
   return (
     <div>Landing SURF
