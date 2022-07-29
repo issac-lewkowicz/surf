@@ -24,11 +24,16 @@ class TeamsController < ApplicationController
     head :no_content
   end
 
+  def new_board
+    board = @team.boards.create!(board_params)
+    render json: board, status: :created
+  end
+
 
   private
 
   def find_team
-    @team = Teams.find(params[:id])
+    @team = Team.find(params[:id])
   end
 
   def team_params

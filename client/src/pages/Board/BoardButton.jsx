@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react'
+import { useNavigate, useParams} from 'react-router-dom'
 import { Button, EditablePreview, Box, useColorModeValue, IconButton, Flex, Input, useDisclosure, useEditableControls, ButtonGroup, SlideFade, Editable, Tooltip, EditableInput } from "@chakra-ui/react";
 
 
 
 function BoardButton({board}) {
   const {title, id} = board
+  let navigate = useNavigate()
 
   const handleClick = () => navigate(`/board/${id}`, { replace: true })
 
@@ -34,8 +36,9 @@ function BoardButton({board}) {
     boxShadow:
       '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
   }}
+  onClick={handleClick}
 >
-  {/* boardName */}
+  {title}
 </Box>
   )
 }

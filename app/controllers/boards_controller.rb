@@ -5,10 +5,10 @@ class BoardsController < ApplicationController
     render json: Board.all
   end
 
-  def create
-    model = @team.boards.create!(board_params)
-    render json: board, status: :created
-  end
+  # def create
+  #   model = @team.boards.create!(board_params)
+  #   render json: board, status: :created
+  # end
 
   def show
     render json: @board
@@ -32,7 +32,7 @@ class BoardsController < ApplicationController
   end
 
   # def find_team
-  #   @team = Teams.find(params[:id])
+  #   @team = Team.find(params[:id])
   # end
 
   def board_params
