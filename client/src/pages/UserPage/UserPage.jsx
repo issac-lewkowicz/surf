@@ -29,7 +29,7 @@ function UserPage({currentUser, setActiveUser}) {
       toast({
         title: 'Not Logged In!',
         description: "You are NOT logged in - Redirecting.",
-        status: 'success',
+        status: 'warning',
         duration: 3000,
         isClosable: true,
       })
