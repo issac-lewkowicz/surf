@@ -13,16 +13,6 @@ function UserPage({currentUser, setActiveUser}) {
   const toast = useToast()
   const [allTeams, setAllTeams] = useState(null)
 
-  // if (currentUser === null) {
-  //   // toast({
-  //   //   title: 'Not Logged In.',
-  //   //   description: "You are NOT logged in - Redirecting.",
-  //   //   status: 'failure',
-  //   //   duration: 3000,
-  //   //   isClosable: true,
-  //   // })
-  //   navigate(`/`, { replace: true })
-  // }
 
   useEffect(() => {
     if (currentUser === null) {
