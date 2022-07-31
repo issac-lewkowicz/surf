@@ -1,14 +1,22 @@
 Rails.application.routes.draw do
-  resources :task_assignments
-  resources :task_labels
-  resources :labels
-  resources :subtasks
-  resources :tasks
-  resources :categories
-  resources :boards
-  resources :team_assignments
-  resources :teams
+  # resources :task_assignments
+  # resources :task_labels
+  # resources :team_assignments
   resources :members
+
+  resources :teams do 
+    resources :boards, shallow: true
+  end
+  resources :boards, except: :create do 
+    resources :categories, shallow: true
+  end
+  resources :categories, except: :create do
+    resources :tasks, shallow: true
+  end
+  resources :tasks, except: :create do
+    resources :subtasks, shallow: true
+    resources :labels, shallow: true
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
