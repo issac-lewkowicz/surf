@@ -1,38 +1,38 @@
 class CategoriesController < ApplicationController
-  before_action :find_model, only: [:show, :update, :destroy]
+  before_action :find_category, only: [:show, :update, :destroy]
 
   def index
-    render json: Model.all
+    render json: Category.all
   end
 
   def create
-    model = Model.create!(model_params)
-    render json: model, status: :created
+    category = Category.create!(category_params)
+    render json: category, status: :created
   end
 
   def show
-    render json: @model
+    render json: @category
   end
 
   def update
-    @model.update!(model_params)
-    render json: model, status: :accepted
+    @category.update!(category_params)
+    render json: category, status: :accepted
   end
 
   def destroy
-    @model.destroy
+    @category.destroy
     head :no_content
   end
 
 
   private
 
-  def find_model
-    @model = Model.find(params[:id])
+  def find_category
+    @category = Category.find(params[:id])
   end
 
-  def model_params
-    params.permit(:attribute1, :attribute2)
+  def category_params
+    params.permit(:title, :board_id)
   end
 
 
