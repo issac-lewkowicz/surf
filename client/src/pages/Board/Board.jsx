@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { useNavigate, useParams} from 'react-router-dom'
+import CategoryColumn from '../../components/Board/CategoryColumn'
 
 
 
@@ -24,14 +25,16 @@ useEffect(() => {
 })
 
 
+// const categories = boardData.categories.map( category => <CategoryColumn category={category} key={category.id})
 // console.log(boardId)
 
 
 
   return (
     <div>
-      {/* actual board page */}
-      board elements here: categories etc.
+      <h1> {boardData.title} </h1>
+
+      {/* {categories} */}
     </div>
   )
 }
