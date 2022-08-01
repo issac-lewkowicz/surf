@@ -25,21 +25,7 @@ function NewTeam({currentUser, onAddTeam}) {
         if (res.ok) {
           res.json()
         .then((team => {
-          const newTeam = ( 
-        <AccordionItem  key={team.id}>
-          <h2>
-          <AccordionButton>
-          <Box flex='1' textAlign='left'>
-          <Team team={team} />
-          </Box>
-          <AccordionIcon />
-        </AccordionButton>
-        </h2>
-      <AccordionPanel pb={4}>
-        Team Boards will go here
-      </AccordionPanel>
-    </AccordionItem>)
-            onAddTeam(newTeam);
+            onAddTeam(team);
             handleClick();
             setFormData("");
         }))}

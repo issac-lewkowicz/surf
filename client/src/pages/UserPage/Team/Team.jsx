@@ -10,7 +10,12 @@ function Team({ team }) {
   const handleClick = () => setShow(!show);
 // console.log(team)
   // const handleSubmit = () => setName(team.team_name)
+  // const [boardList, setBoardList] = useState([])
   const boardList = team.boards.map(board => <BoardButton board={board} key={board.id}/>)
+
+  // useEffect(() => {
+  //   setBoardList()
+  //   }, [])
 
   function EditableControls() {
     const {
@@ -57,7 +62,7 @@ function Team({ team }) {
       </h2>
       <AccordionPanel pb={4}>
         {boardList}
-        <NewBoardButton />
+        <NewBoardButton team={team} />
       </AccordionPanel>
     </AccordionItem>
   );

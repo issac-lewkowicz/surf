@@ -7,7 +7,7 @@ import NewTeam from './NewTeam';
 
 function JoinedTeamList({currentUser}) {
   const [allTeams, setAllTeams] = useState(null)
-  // const [boardList, setBoardList] = useState([])
+
 
   useEffect(() => {
     fetch(`/teams`)
