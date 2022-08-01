@@ -2,7 +2,7 @@ class TeamsController < ApplicationController
   before_action :find_team, only: [:show, :update, :destroy]
 
   def index
-    render json: Team.all
+    render json: @current_user.teams
   end
 
   def create
@@ -24,10 +24,10 @@ class TeamsController < ApplicationController
     head :no_content
   end
 
-  def new_board
-    board = @team.boards.create!(board_params)
-    render json: board, status: :created
-  end
+  # def new_board
+  #   board = @team.boards.create!(board_params)
+  #   render json: board, status: :created
+  # end
 
 
   private

@@ -11,7 +11,7 @@ function UserPage({currentUser, setActiveUser}) {
   // const { isOpen, onOpen, onClose } = useDisclosure()
   let navigate = useNavigate()
   const toast = useToast()
-  const [allTeams, setAllTeams] = useState(null)
+
 
 
   useEffect(() => {
@@ -27,6 +27,9 @@ function UserPage({currentUser, setActiveUser}) {
     }
     }, [])
 
+    
+
+
   if ( currentUser === null) return <p>Loading...</p>;
   console.log(currentUser)
   return (
@@ -35,7 +38,7 @@ function UserPage({currentUser, setActiveUser}) {
       <h2>My Teams</h2>
       {/* <OwnedTeamList currentUser={currentUser}/> */}
       {/* <h2>Joined Teams:</h2> */}
-      <JoinedTeamList currentUser={currentUser} allTeams={allTeams} setAllTeams={setAllTeams} />
+      <JoinedTeamList currentUser={currentUser} />
 
     </div>
   )

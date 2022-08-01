@@ -6,19 +6,27 @@ import { useNavigate, useParams} from 'react-router-dom'
 function Board() {
   let { boardId } = useParams()
 
-  // const [boardData, setBoardData] = useState({})
+  const [boardData, setBoardData] = useState({})
 
-//fetch the board by id
-
-// useEffect(() => {
-//   fetch('boards/boardId?')???????????????????????
-//       .then(res => res.json())
-//       .then(console.log)
-//   }, [])
-
+useEffect(() => {
+  fetch('boards/boardId')
+  .then((res) => {
+    if (res.ok) {
+      res.json().then((data) => {
+        setBoardData(data); 
+      });
+    }
+    else {
+      res.json().then(errors => {
+        console.error(errors)
+      })}
+  });
+})
 
 
 console.log(boardId)
+
+
 
   return (
     <div>

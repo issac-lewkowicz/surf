@@ -5,7 +5,25 @@ import NewTeam from './NewTeam';
 
 
 
-function JoinedTeamList({currentUser, allTeams, setAllTeams}) {
+function JoinedTeamList({currentUser}) {
+  const [allTeams, setAllTeams] = useState(null)
+  const [boardList, setBoardList] = useState([])
+
+  // useEffect(() => {
+  //   fetch(`/teams`)
+  //       .then((res) => {
+  //         if (res.ok) {
+  //           res.json().then((teams) => {
+  //             setAllTeams(teams); 
+  //           });
+  //         }
+  //         else {
+  //           res.json().then(errors => {
+  //             console.error(errors)
+  //           })}
+  //         });
+  //       }, [allTeams])
+
   let joinedTeams = (currentUser.teams && currentUser.teams.map(team => 
   <AccordionItem key={team.id}>
     <h2>

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :boards, shallow: true
   end
   resources :boards, except: :create do 
-    resources :categories, shallow: true
+    resources :categories, shallow: true  
   end
   resources :categories, except: :create do
     resources :tasks, shallow: true

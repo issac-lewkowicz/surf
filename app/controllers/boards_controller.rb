@@ -5,12 +5,12 @@ class BoardsController < ApplicationController
     render json: Board.all
   end
 
-  # def create
-  #   model = @team.boards.create!(board_params)
-  #   render json: board, status: :created
-  # end
+  def create
+    model = @team.boards.create!(board_params)
+    render json: board, status: :created
+  end
 
-  def show
+  def show  
     render json: @board
   end
 
