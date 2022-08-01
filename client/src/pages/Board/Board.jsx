@@ -9,7 +9,7 @@ function Board() {
   const [boardData, setBoardData] = useState({})
 
 useEffect(() => {
-  fetch('boards/boardId')
+  fetch(`/boards/${boardId}`)
   .then((res) => {
     if (res.ok) {
       res.json().then((data) => {
@@ -24,7 +24,7 @@ useEffect(() => {
 })
 
 
-console.log(boardId)
+// console.log(boardId)
 
 
 

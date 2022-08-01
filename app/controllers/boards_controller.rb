@@ -6,7 +6,7 @@ class BoardsController < ApplicationController
   end
 
   def create
-    model = @team.boards.create!(board_params)
+    board = Board.create!(board_params)
     render json: board, status: :created
   end
 
@@ -36,7 +36,7 @@ class BoardsController < ApplicationController
   # end
 
   def board_params
-    params.permit(:title, :team)
+    params.permit(:title, :team_id)
   end
 
 
