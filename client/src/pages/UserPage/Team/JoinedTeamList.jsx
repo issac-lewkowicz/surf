@@ -7,37 +7,29 @@ import NewTeam from './NewTeam';
 
 function JoinedTeamList({currentUser}) {
   const [allTeams, setAllTeams] = useState(null)
-  const [boardList, setBoardList] = useState([])
+  // const [boardList, setBoardList] = useState([])
 
-  // useEffect(() => {
-  //   fetch(`/teams`)
-  //       .then((res) => {
-  //         if (res.ok) {
-  //           res.json().then((teams) => {
-  //             setAllTeams(teams); 
-  //           });
-  //         }
-  //         else {
-  //           res.json().then(errors => {
-  //             console.error(errors)
-  //           })}
-  //         });
-  //       }, [allTeams])
+  useEffect(() => {
+    fetch(`/teams`)
+        .then((res) => {
+          if (res.ok) {
+            res.json().then((teams) => {
+              setAllTeams(teams); 
+            });
+          }
+          else {
+            res.json().then(errors => {
+              console.error(errors)
+            })}
+          });
+        }, [])
 
-  let joinedTeams = (currentUser.teams && currentUser.teams.map(team => 
-  <AccordionItem key={team.id}>
-    <h2>
-      <AccordionButton>
-        <Box flex='1' textAlign='left'>
-        <Team team={team} />
-        </Box>
-        <AccordionIcon />
-      </AccordionButton>
-    </h2>
-    <AccordionPanel pb={4}>
-      Team Boards will go here
-    </AccordionPanel>
-  </AccordionItem>  
+    if (!allTeams) return <p>Loading all teams...</p>
+console.log("all: ", allTeams)
+console.log("current: ", currentUser.teams)
+  // let joinedTeams = (currentUser.teams && currentUser.teams.map(team => 
+  let joinedTeams = (allTeams && allTeams.map(team => 
+        <Team team={team} key={team.id}/>
   ))
 
   const handleAddTeam = (newTeam) => {
@@ -49,7 +41,7 @@ function JoinedTeamList({currentUser}) {
 
   return (
     <>
-    <Accordion>{allTeams === null ? joinedTeams : allTeams} </Accordion>
+    <Accordion>{joinedTeams} </Accordion>
     <NewTeam currentUser={currentUser} onAddTeam={handleAddTeam} />
     </>
   )
