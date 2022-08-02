@@ -1,8 +1,11 @@
 import React from 'react'
+import { Stack, HStack, VStack, Button, Box, Container, Heading, Text, Spinner } from '@chakra-ui/react'
 
-function TaskCard() {
+function TaskCard({task}) {
   return (
-    <div>TaskCard</div>
+    <Box>
+      {task.title}
+    </Box>
   )
 }
 

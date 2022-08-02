@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import  { Button, Stack, HStack, VStack,  FormControl, FormLabel, FormErrorMessage, FormHelperText, Input, InputGroup, InputRightElement, Container, Heading, Text, Spinner } from '@chakra-ui/react'
+import  { Button, Stack, HStack, VStack,  FormControl, FormLabel, FormErrorMessage, FormHelperText, Input, InputGroup, InputRightElement, Container, Heading, Text, Spinner, Box } from '@chakra-ui/react'
 import CategoryColumn from '../../components/Board/CategoryColumn';
 
 function Board() {
@@ -66,19 +66,19 @@ function Board() {
   ));
 
   return (
-    <div>
+    <Box>
       <Heading> {boardData.title} </Heading>
-    <HStack>
+    <HStack >
 
       {categories}
 
       <FormControl>
         {!show && (<Button onClick={handleClick}>Add A Category</Button>)}
-        {show && (<InputGroup><Input type="text" name="team_name" id="team_name_add" placeholder="Enter Team Name" value={formData} onChange={(e) => setFormData(e.target.value)} /> 
+        {show && (<InputGroup><Input type="text" name="title" id="category_title_add" placeholder="Enter Category Title" value={formData} onChange={(e) => setFormData(e.target.value)} /> 
         <Button type='submit' onClick={handleAddCategory}>Create Category</Button></InputGroup>)}
       </FormControl>
     </HStack>
-    </div>
+    </Box>
   );
 }
 
