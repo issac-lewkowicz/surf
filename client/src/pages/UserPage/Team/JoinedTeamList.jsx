@@ -25,8 +25,6 @@ function JoinedTeamList({currentUser}) {
         }, [])
 
     if (!allTeams) return <p>Loading all teams...</p>
-console.log("all: ", allTeams)
-console.log("current: ", currentUser.teams)
   // let joinedTeams = (currentUser.teams && currentUser.teams.map(team => 
   let joinedTeams = (allTeams && allTeams.map(team => 
         <Team team={team} key={team.id}/>

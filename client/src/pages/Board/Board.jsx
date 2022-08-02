@@ -25,7 +25,7 @@ function Board() {
         });
       }
     });
-  });
+  }, [categoryList]);
 
   const onAddCategory = (newCategory) => {
     const updatedCategoryList = [...categoryList, newCategory];

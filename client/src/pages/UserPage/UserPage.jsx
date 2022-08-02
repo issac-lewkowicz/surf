@@ -31,7 +31,7 @@ function UserPage({currentUser, setActiveUser}) {
 
 
   if ( currentUser === null) return <p>Loading...</p>;
-  console.log(currentUser)
+  // console.log(currentUser)
   return (
     <div>
       <Logout setActiveUser={setActiveUser}/>

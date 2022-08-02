@@ -47,14 +47,14 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
+        {/* <Grid minH="100vh" p={3}> */}
           <ColorModeSwitcher justifySelf="flex-end" />
             <Routes>
               <Route exact path="/" element={<Landing setActiveUser={handleSetUser} currentUser={currentUser}/>} />
               <Route exact path="/user-page" element={<UserPage currentUser={currentUser} setActiveUser={handleSetUser} />} />
               <Route exact path="/board/:boardId" element={<Board />} />
             </Routes>
-        </Grid>
+        {/* </Grid> */}
       </Box>
     </ChakraProvider>
   );
