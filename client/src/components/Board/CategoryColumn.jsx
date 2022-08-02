@@ -88,10 +88,7 @@ function CategoryColumn({ category }) {
 
     fetch(`/categories/${category.id}`, patchConfig).then(res => {
       if (res.ok) {
-        res.json().then(updatedCategory => {
-          console.log(updatedCategory);
-          // onUpdateCategory(updatedCategory);
-        });
+        res.json().then(console.log);
       } else {
         res.json().then(errors => {
           console.error(errors);
