@@ -23,8 +23,8 @@ class MembersController < ApplicationController
   end
 
   def update
-    @current_user.update!(user_params)
-    render json: user, status: :accepted
+    @current_user.update!(member_params)
+    render json: @current_user, status: :accepted
   end
 
   def destroy
@@ -46,6 +46,6 @@ class MembersController < ApplicationController
   private
 
   def member_params
-    params.permit(:member_name, :username, :password, :password_confirmation, :email, :image_url)
+    params.permit(:member_name, :username, :password, :password_confirmation, :email, :image_url, :id)
   end
 end

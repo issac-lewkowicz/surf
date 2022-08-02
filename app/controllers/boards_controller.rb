@@ -16,7 +16,7 @@ class BoardsController < ApplicationController
 
   def update
     @board.update!(board_params)
-    render json: board, status: :accepted
+    render json: @board, status: :accepted
   end
 
   def destroy
@@ -36,7 +36,7 @@ class BoardsController < ApplicationController
   # end
 
   def board_params
-    params.permit(:title, :team_id)
+    params.permit(:title, :team_id, :id)
   end
 
 

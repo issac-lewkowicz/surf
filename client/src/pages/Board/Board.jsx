@@ -6,8 +6,8 @@ import CategoryColumn from '../../components/Board/CategoryColumn';
 function Board() {
   let { boardId } = useParams();
   const [formData, setFormData] = useState('');
-  const [boardData, setBoardData] = useState({});
-  const [categoryList, setCategoryList] = useState([]);
+  const [boardData, setBoardData] = useState(null);
+  const [categoryList, setCategoryList] = useState(null);
 
   const [show, setShow] = useState(false)
   const handleClick = () => setShow(!show)
@@ -17,7 +17,7 @@ function Board() {
       if (res.ok) {
         res.json().then(data => {
           setBoardData(data);
-          setCategoryList(boardData.categories);
+          setCategoryList(data.categories);
         });
       } else {
         res.json().then(errors => {
@@ -25,7 +25,7 @@ function Board() {
         });
       }
     });
-  }, [categoryList]);
+  }, []);
 
   const onAddCategory = (newCategory) => {
     const updatedCategoryList = [...categoryList, newCategory];

@@ -16,7 +16,7 @@ class TasksController < ApplicationController
 
   def update
     @task.update!(task_params)
-    render json: task, status: :accepted
+    render json: @task, status: :accepted
   end
 
   def destroy
@@ -32,7 +32,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.permit(:category_id, :title, :description, :due_date)
+    params.permit(:category_id, :title, :description, :due_date, :id)
   end
 
 

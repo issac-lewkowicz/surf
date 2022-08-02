@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
 
   def update
     @category.update!(category_params)
-    render json: category, status: :accepted
+    render json: @category, status: :accepted
   end
 
   def destroy
@@ -32,7 +32,7 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params.permit(:title, :board_id)
+    params.permit(:title, :board_id, :id)
   end
 
 

@@ -16,7 +16,7 @@ class TeamsController < ApplicationController
 
   def update
     @team.update!(team_params)
-    render json: team, status: :accepted
+    render json: @team, status: :accepted
   end
 
   def destroy
@@ -37,7 +37,7 @@ class TeamsController < ApplicationController
   end
 
   def team_params
-    params.permit(:team_name, :member_id)
+    params.permit(:team_name, :member_id, :id)
   end
 
 
