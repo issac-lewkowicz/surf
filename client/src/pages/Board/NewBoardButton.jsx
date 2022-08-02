@@ -57,7 +57,6 @@ function NewBoardButton({ team }) {
         });
       }
     });
-    // onClose()
   };
 
   return (
