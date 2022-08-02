@@ -3,9 +3,16 @@ import { Stack, HStack, VStack, Button, Box, Container, Heading, Text, Spinner }
 
 function TaskCard({task}) {
   return (
-    <Box>
+    <Container 
+
+    border="1px"
+    p="8px"
+    borderRadius="2px"
+    fontSize="15px"
+    fontWeight="bold"
+    borderColor="#ccd0d5">
       {task.title}
-    </Box>
+    </Container>
   )
 }
 
