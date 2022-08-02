@@ -11,7 +11,7 @@ class BoardsController < ApplicationController
   end
 
   def show  
-    render json: @board #, include: ['categories', 'categories.tasks']
+    render json: @board, include: ['categories', 'categories.tasks']
   end
 
   def update

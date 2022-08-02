@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import  { Button, Stack, HStack, VStack,  FormControl, FormLabel, FormErrorMessage, FormHelperText, Input, InputGroup, InputRightElement } from '@chakra-ui/react'
+import  { Button, Stack, HStack, VStack,  FormControl, FormLabel, FormErrorMessage, FormHelperText, Input, InputGroup, InputRightElement, Container, Heading, Text, Spinner } from '@chakra-ui/react'
 import CategoryColumn from '../../components/Board/CategoryColumn';
 
 function Board() {
@@ -58,8 +58,8 @@ function Board() {
     });
   }
 
-  if (!boardData) return <p>Loading...</p>;
-  if (!categoryList) return <p>Loading...</p>;
+  if (!boardData) return <Spinner />
+  if (!categoryList) return <Spinner />
 
   const categories = categoryList.map(category => (
     <CategoryColumn category={category} key={category.id} />
@@ -67,7 +67,7 @@ function Board() {
 
   return (
     <div>
-      <h1> {boardData.title} </h1>
+      <Heading> {boardData.title} </Heading>
     <HStack>
 
       {categories}
