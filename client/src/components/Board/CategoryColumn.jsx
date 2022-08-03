@@ -25,9 +25,8 @@ import TaskCard from './TaskCard';
 
 function CategoryColumn({ category }) {
   const { title, id, tasks } = category;
-  const [taskList, setTaskList] = React.useState([]);
+  const [taskList, setTaskList] = React.useState(null);
   const [newTaskData, setNewTaskData] = useState('');
-  // const [newTaskData, setNewTaskData] = useState('');
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
