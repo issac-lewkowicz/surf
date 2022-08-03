@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   # resources :task_assignments
   # resources :task_labels
-  # resources :team_assignments
-
+  
+  resources :team_assignments, only: [:create]
+  
   resources :members do
     resources :teams, shallow: true
   end

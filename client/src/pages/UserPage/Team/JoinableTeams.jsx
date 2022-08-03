@@ -3,7 +3,7 @@ import { Spinner, Container, ButtonGroup, Heading, Grid, SimpleGrid } from '@cha
 import TeamJoin from './TeamJoin';
 
 
-function JoinableTeams() {
+function JoinableTeams({currentUser}) {
 // user will be able to join a team, by browsing/ searching through all teams
 //stretch goal would be to make a request to join a team (eventually be able to get invited)
 
@@ -27,7 +27,7 @@ useEffect(() => {
 
   if (!joinableTeamList) return <Spinner />;
 
-  const joinTeams = joinableTeamList.map(team => <TeamJoin team={team} key={team.id} />);
+  const joinTeams = joinableTeamList.map(team => <TeamJoin team={team} key={team.id} currentUser={currentUser} />);
 
   return (
     <>

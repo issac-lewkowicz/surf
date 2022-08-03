@@ -55,7 +55,7 @@ function App() {
               <Route exact path="/" element={<Landing setActiveUser={handleSetUser} currentUser={currentUser}/>} />
               <Route exact path="/user-page" element={<UserPage currentUser={currentUser} setActiveUser={handleSetUser} />} />
               <Route exact path="/board/:boardId" element={<Board />} />
-              <Route exact path="/join-teams" element={<JoinableTeams />} />
+              <Route exact path="/join-teams" element={<JoinableTeams currentUser={currentUser} />} />
             </Routes>
         {/* </Grid> */}
       </Box>
