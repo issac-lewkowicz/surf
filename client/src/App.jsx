@@ -15,6 +15,7 @@ import Landing from './pages/Landing/Landing';
 import Signup from './pages/Signup/Signup';
 import UserPage from './pages/UserPage/UserPage';
 import Board from './pages/Board/Board';
+import JoinableTeams from './pages/UserPage/Team/JoinableTeams';
 // import { Logo } from './assets/Logo';
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
               <Route exact path="/" element={<Landing setActiveUser={handleSetUser} currentUser={currentUser}/>} />
               <Route exact path="/user-page" element={<UserPage currentUser={currentUser} setActiveUser={handleSetUser} />} />
               <Route exact path="/board/:boardId" element={<Board />} />
+              <Route exact path="/join-teams" element={<JoinableTeams />} />
             </Routes>
         {/* </Grid> */}
       </Box>

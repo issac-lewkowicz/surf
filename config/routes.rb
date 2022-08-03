@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
     # route to test your configuration
     # get '/hello', to: 'application#hello_world'
-    get "/teams", to: "teams#all_teams"
+    get "/join-teams", to: "teams#joinable_teams"
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
     post "/signup", to: "members#create"
