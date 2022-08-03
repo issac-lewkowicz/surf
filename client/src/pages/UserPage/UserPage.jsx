@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { useNavigate } from "react-router-dom";
 import JoinedTeamList from './Team/JoinedTeamList';
 // import OwnedTeamList from './OwnedTeamList';
-import { ChakraProvider, Box, Text, Link, VStack, Code, Grid, theme, Button, FormControl, FormLabel, FormErrorMessage, FormHelperText, Input, InputGroup, InputRightElement, useToast, Toast, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody,  ModalCloseButton, useDisclosure} from '@chakra-ui/react';
+import { Spinner, ChakraProvider, Box, Text, Link, VStack, Code, Grid, theme, Button, FormControl, FormLabel, FormErrorMessage, FormHelperText, Input, InputGroup, InputRightElement, useToast, Toast, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody,  ModalCloseButton, useDisclosure} from '@chakra-ui/react';
 import NewTeam from './Team/NewTeam';
 import Logout from '../../components/Navbar/Logout';
 
@@ -30,7 +30,7 @@ function UserPage({currentUser, setActiveUser}) {
     
 
 
-  if ( currentUser === null) return <p>Loading...</p>;
+  if ( currentUser === null) return <Spinner />;
   // console.log(currentUser)
   return (
     <div>

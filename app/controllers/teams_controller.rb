@@ -9,25 +9,28 @@ class TeamsController < ApplicationController
     team = @current_user.teams.create!(team_params)
     render json: team, status: :created
   end
-
+  
   def show
     render json: @team
   end
-
+  
   def update
     @team.update!(team_params)
     render json: @team, status: :accepted
   end
-
+  
   def destroy
     @team.destroy
     head :no_content
   end
 
-  # def new_board
-  #   board = @team.boards.create!(board_params)
-  #   render json: board, status: :created
-  # end
+  def all_teams
+    # all_teams = Team.all
+    # user_teams = @current_user.teams
+    # joinable_teams = all_teams - user_teams
+    # render json: joinable_teams
+    render json: Team.all
+  end
 
 
   private

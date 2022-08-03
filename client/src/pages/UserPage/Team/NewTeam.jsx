@@ -20,7 +20,7 @@ function NewTeam({currentUser, onAddTeam}) {
         body: JSON.stringify(team),
     };
   
-    fetch('/teams', postConfig)
+    fetch(`/members/${currentUser.id}/teams`, postConfig)
         .then(res => { 
         if (res.ok) {
           res.json()

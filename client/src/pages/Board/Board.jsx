@@ -15,12 +15,12 @@ import {
   Container,
   Heading,
   Text,
-  Spinner,
   Box,
   Editable,
   EditableInput,
   EditableTextarea,
   EditablePreview,
+  Spinner,
 } from '@chakra-ui/react';
 import CategoryColumn from '../../components/Board/CategoryColumn';
 
