@@ -1,8 +1,15 @@
 import React from 'react'
+import { Button } from '@chakra-ui/react';
+
 
 function TeamJoin({team}) {
+
+  const handleJoin = () => {
+    console.log(team)
+  }
+
   return (
-    <div>{team.team_name}</div>
+    <Button onClick={handleJoin}>{team.team_name}</Button>
   )
 }
 

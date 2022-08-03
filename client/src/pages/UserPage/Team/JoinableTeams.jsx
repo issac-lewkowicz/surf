@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Spinner, Container } from '@chakra-ui/react';
+import { Spinner, Container, ButtonGroup, Heading, Grid, SimpleGrid } from '@chakra-ui/react';
 import TeamJoin from './TeamJoin';
 
 
@@ -30,9 +30,15 @@ useEffect(() => {
   const joinTeams = joinableTeamList.map(team => <TeamJoin team={team} key={team.id} />);
 
   return (
-    <Container>
-      {joinTeams}
-    </Container>
+    <>
+    <Heading>Pick a team to join</Heading>
+
+    {/* <Container> */}
+      <SimpleGrid  columns={2} spacing={6} padding={20}>
+        {joinTeams}
+      </SimpleGrid>
+
+    </>
   )
 }
 
