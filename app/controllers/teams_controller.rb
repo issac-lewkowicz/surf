@@ -29,7 +29,6 @@ class TeamsController < ApplicationController
     user_teams = @current_user.teams
     joinable = all_teams - user_teams
     render json: joinable
-    # render json: Team.all
   end
 
 

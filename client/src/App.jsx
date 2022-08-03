@@ -32,18 +32,19 @@ function App() {
   // const handleLogout = () => setCurrentUser(null)
 
   useEffect(() => {
-		fetch("/me").then((res) => {
-			if (res.ok) {
-				res.json().then((user) => {
-					setCurrentUser(user); 
-				});
-			}
+    fetch("/me")
+    .then((res) => {
+      if (res.ok) {
+        res.json().then((user) => {
+          setCurrentUser(user); 
+        });
+      }
       else {
         res.json().then(errors => {
           console.error(errors)
         })}
-		});
-	}, []);
+    });
+  }, []);
 
   return (
     <ChakraProvider theme={theme}>
