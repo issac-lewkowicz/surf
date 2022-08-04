@@ -21,12 +21,14 @@ import {
   EditableTextarea,
   EditablePreview,
   Tooltip,
+  IconButton,
 } from '@chakra-ui/react';
 import TaskCard from './TaskCard';
+import { DeleteIcon } from '@chakra-ui/icons';
 
-function CategoryColumn({ category }) {
+function CategoryColumn({ category, onDelete }) {
   const { title, id, tasks } = category;
-  const [taskList, setTaskList] = React.useState(null);
+  const [taskList, setTaskList] = useState(null);
   const [newTaskData, setNewTaskData] = useState('');
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
@@ -66,17 +68,29 @@ function CategoryColumn({ category }) {
     });
   };
 
+  const handleDeleteCategory = () => {
+    fetch(`/categories/${category.id}`, {
+      method: 'DELETE',
+    }).then(res =>
+      res.ok
+        ? onDelete(category.id)
+        : res.json().then(errors => console.error(errors))
+    );
+  };
+
   if (!taskList) return <Spinner />;
 
+  const onDeleteTask = id => {
+    const updatedTaskList = taskList.filter(task => task.id !== id);
+    setTaskList(updatedTaskList);
+  };
+
   const taskCardList = taskList.map(task => (
-    <TaskCard task={task} key={task.id} />
+    <TaskCard task={task} key={task.id} onDeleteTask={onDeleteTask} />
   ));
 
   const handleEditCategory = value => {
-    console.log(value)
-    // console.log('e.target: ', e.currentTarget);
-    // console.log('e.target.value: ', e.target.value);
-
+    console.log(value);
     const patchConfig = {
       method: 'PATCH',
       headers: {
@@ -107,20 +121,25 @@ function CategoryColumn({ category }) {
       borderColor="#ccd0d5"
     >
       <Heading fontSize="xl">
+        <IconButton
+          onClick={handleDeleteCategory}
+          colorScheme="red"
+          icon={<DeleteIcon />}
+        />
         <Editable defaultValue={title} onSubmit={handleEditCategory}>
-        <Tooltip label="Click to edit">
-          <EditablePreview
-            py={2}
-            px={4}
-            _hover={{
-              background: "gray.500"
-            }}
-          />
-        </Tooltip>
+          <Tooltip label="Click to edit">
+            <EditablePreview
+              py={2}
+              px={4}
+              _hover={{
+                background: 'gray.500',
+              }}
+            />
+          </Tooltip>
           <EditableInput />
         </Editable>
       </Heading>
-      <br/>
+      <br />
       <VStack spacing={4}>{taskCardList}</VStack>
       <FormControl>
         {!show && <Button onClick={handleClick}>New Task</Button>}

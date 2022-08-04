@@ -15,9 +15,11 @@ import {
   EditablePreview,
   Tooltip,
   useColorModeValue,
+  IconButton,
 } from '@chakra-ui/react';
+import { DeleteIcon } from '@chakra-ui/icons';
 
-function TaskCard({ task }) {
+function TaskCard({ task, onDeleteTask }) {
   const handleEditTaskCard = value => {
     console.log(value);
 
@@ -41,6 +43,16 @@ function TaskCard({ task }) {
     });
   };
 
+  const handleDeleteTask = () => {
+    fetch(`/tasks/${task.id}`, {
+      method: 'DELETE',
+    }).then(res =>
+      res.ok
+        ? onDeleteTask(task.id)
+        : res.json().then(errors => console.error(errors))
+    );
+  };
+
   return (
     <Container
       border="1px"
@@ -51,7 +63,12 @@ function TaskCard({ task }) {
       borderColor="#ccd0d5"
     >
       <Editable defaultValue={task.title} onSubmit={handleEditTaskCard}>
-      <Tooltip label="Click to edit">
+        <IconButton
+          onClick={handleDeleteTask}
+          colorScheme="red"
+          icon={<DeleteIcon />}
+        />
+        <Tooltip label="Click to edit">
           <EditablePreview
             py={2}
             px={4}

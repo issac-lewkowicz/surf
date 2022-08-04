@@ -38,7 +38,7 @@ function Board() {
   const [categoryList, setCategoryList] = useState(null);
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
-  
+
   useEffect(() => {
     fetch(`/boards/${boardId}`).then(res => {
       if (res.ok) {
@@ -53,12 +53,19 @@ function Board() {
       }
     });
   }, []);
-  
+
   const onAddCategory = newCategory => {
     const updatedCategoryList = [...categoryList, newCategory];
     setCategoryList(updatedCategoryList);
   };
-  
+
+  const onDeleteCategory = id => {
+    const updatedCategoryList = categoryList.filter(
+      category => category.id !== id
+    );
+    setCategoryList(updatedCategoryList);
+  };
+
   const handleAddCategory = e => {
     e.preventDefault();
     const newCategory = { board_id: boardId, title: formData };
@@ -69,7 +76,7 @@ function Board() {
       },
       body: JSON.stringify(newCategory),
     };
-    
+
     fetch(`/boards/${boardId}/categories`, postConfig).then(res => {
       if (res.ok) {
         res.json().then(newCategory => {
@@ -107,33 +114,35 @@ function Board() {
       }
     });
   };
-  
+
   if (!boardData) return <Spinner />;
   if (!categoryList) return <Spinner />;
 
   const categories = categoryList.map(category => (
-    <CategoryColumn category={category} key={category.id} />
+    <CategoryColumn
+      category={category}
+      key={category.id}
+      onDelete={onDeleteCategory}
+    />
   ));
-
 
   const handleDeleteBoard = () => {
     fetch(`/boards/${boardId}`, {
       method: 'DELETE',
-    }).then(res =>{
-    if (res.ok) {
-      toast({
-        title: 'Board Deleted!',
-        description: "You have successfully deleted the board",
-        status: 'success',
-        duration: 3000,
-        isClosable: true,
-      })
-      navigate(`/user-page`, { replace: true })
-    }
-    else {
-      res.json().then(errors => console.error(errors))
-    }
-  });
+    }).then(res => {
+      if (res.ok) {
+        toast({
+          title: 'Board Deleted!',
+          description: 'You have successfully deleted the board',
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        });
+        navigate(`/user-page`, { replace: true });
+      } else {
+        res.json().then(errors => console.error(errors));
+      }
+    });
   };
 
   return (
