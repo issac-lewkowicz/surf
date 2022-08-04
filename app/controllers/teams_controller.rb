@@ -24,12 +24,12 @@ class TeamsController < ApplicationController
     head :no_content
   end
 
+  #GET '/join-teams'
   def joinable_teams
     all_teams = Team.all
     user_teams = @current_user.teams
     joinable = all_teams - user_teams
     render json: joinable
-    # render json: Team.all
   end
 
 

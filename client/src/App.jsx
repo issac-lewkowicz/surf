@@ -32,18 +32,19 @@ function App() {
   // const handleLogout = () => setCurrentUser(null)
 
   useEffect(() => {
-		fetch("/me").then((res) => {
-			if (res.ok) {
-				res.json().then((user) => {
-					setCurrentUser(user); 
-				});
-			}
+    fetch("/me")
+    .then((res) => {
+      if (res.ok) {
+        res.json().then((user) => {
+          setCurrentUser(user); 
+        });
+      }
       else {
         res.json().then(errors => {
           console.error(errors)
         })}
-		});
-	}, []);
+    });
+  }, []);
 
   return (
     <ChakraProvider theme={theme}>
@@ -54,7 +55,7 @@ function App() {
               <Route exact path="/" element={<Landing setActiveUser={handleSetUser} currentUser={currentUser}/>} />
               <Route exact path="/user-page" element={<UserPage currentUser={currentUser} setActiveUser={handleSetUser} />} />
               <Route exact path="/board/:boardId" element={<Board />} />
-              <Route exact path="/join-teams" element={<JoinableTeams />} />
+              <Route exact path="/join-teams" element={<JoinableTeams currentUser={currentUser} />} />
             </Routes>
         {/* </Grid> */}
       </Box>

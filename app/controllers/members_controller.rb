@@ -37,11 +37,6 @@ class MembersController < ApplicationController
   #   teams = @current_user.owned_teams 
   # end
 
-  # # GET '/my-teams'
-  # def teams
-  #   teams = @current_user.teams
-  # end
-
 
   private
 
