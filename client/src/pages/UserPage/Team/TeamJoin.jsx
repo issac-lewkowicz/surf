@@ -7,21 +7,7 @@ function TeamJoin({ team, currentUser }) {
 
 
   const handleJoin = e => {
-    // console.log(team);
     e.currentTarget.disabled = true;
-    //display toast/redirect?
-    // const currentTeamMembers = team.members
-
-    // const patchConfig = {
-    //   method: "PATCH",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Accept": "application/json",
-    //   },
-    //   body: JSON.stringify({key: "updatedValue"})
-    // };
-
-    // fetch(`/teams/${team.id}`, patchConfig).then...
 
     const postConfig = {
       method: 'POST',

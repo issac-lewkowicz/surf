@@ -1,8 +1,9 @@
 class CategoriesController < ApplicationController
   before_action :find_category, only: [:show, :update, :destroy]
+  before_action :find_board, only: [:index]
 
   def index
-    render json: Category.all
+    render json: @board.categories
   end
 
   def create
@@ -29,6 +30,10 @@ class CategoriesController < ApplicationController
 
   def find_category
     @category = Category.find(params[:id])
+  end
+
+  def find_board
+    @board = Board.find(params[:board_id])
   end
 
   def category_params

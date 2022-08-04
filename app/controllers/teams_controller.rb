@@ -24,6 +24,7 @@ class TeamsController < ApplicationController
     head :no_content
   end
 
+  #GET '/join-teams'
   def joinable_teams
     all_teams = Team.all
     user_teams = @current_user.teams
