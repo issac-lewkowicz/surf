@@ -36,30 +36,6 @@ function Team({ team }) {
     <BoardButton board={board} key={board.id} />
   ));
 
-  // useEffect(() => {
-  //   setBoardList()
-  //   }, [])
-
-  // function EditableControls() {
-  //   const {
-  //     isEditing,
-  //     getSubmitButtonProps,
-  //     getCancelButtonProps,
-  //     getEditButtonProps,
-  //   } = useEditableControls();
-
-  //   return isEditing ? (
-  //     <ButtonGroup justifyContent="end" size="sm" w="full" spacing={2} mt={2}>
-  //       <IconButton icon={<CheckIcon />} {...getSubmitButtonProps()} />
-  //       <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
-  //     </ButtonGroup>
-  //   ) : (
-  //     <Flex justifyContent="right">
-  //       <IconButton size="sm" icon={<EditIcon />} {...getEditButtonProps()} />
-  //     </Flex>
-  //   );
-  // }
-
   const handleEditTeam = value => {
     console.log(value);
     const patchConfig = {
@@ -86,22 +62,6 @@ function Team({ team }) {
       <Heading fontSize="xl" >
         <AccordionButton>
           <Box flex="1" textAlign="left">
-            {/* <Editable
-              textAlign="left"
-              defaultValue={team.team_name}
-              fontSize="2xl"
-              isPreviewFocusable={false}
-              // onSubmit={}
-            >
-              {!show && (
-                <Button onClick={handleClick}>
-                  <EditablePreview />
-                </Button>
-              )}
-              {show && <EditablePreview />}
-              <Input as={EditableInput} />
-              {show && <EditableControls />}
-            </Editable> */}
             <Editable defaultValue={team.team_name} onSubmit={handleEditTeam}>
               <Tooltip label="Click to edit">
                 <EditablePreview

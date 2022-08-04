@@ -24,18 +24,21 @@ import {
   Tooltip,
   useColorModeValue,
   ButtonGroup,
+  useToast,
 } from '@chakra-ui/react';
 import CategoryColumn from '../../components/Board/CategoryColumn';
+import { DeleteIcon } from '@chakra-ui/icons';
 
 function Board() {
   let { boardId } = useParams();
+  let navigate = useNavigate();
+  const toast = useToast();
   const [formData, setFormData] = useState('');
   const [boardData, setBoardData] = useState(null);
   const [categoryList, setCategoryList] = useState(null);
-
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
-
+  
   useEffect(() => {
     fetch(`/boards/${boardId}`).then(res => {
       if (res.ok) {
@@ -50,12 +53,12 @@ function Board() {
       }
     });
   }, []);
-
+  
   const onAddCategory = newCategory => {
     const updatedCategoryList = [...categoryList, newCategory];
     setCategoryList(updatedCategoryList);
   };
-
+  
   const handleAddCategory = e => {
     e.preventDefault();
     const newCategory = { board_id: boardId, title: formData };
@@ -66,7 +69,7 @@ function Board() {
       },
       body: JSON.stringify(newCategory),
     };
-
+    
     fetch(`/boards/${boardId}/categories`, postConfig).then(res => {
       if (res.ok) {
         res.json().then(newCategory => {
@@ -81,13 +84,6 @@ function Board() {
       }
     });
   };
-
-  if (!boardData) return <Spinner />;
-  if (!categoryList) return <Spinner />;
-
-  const categories = categoryList.map(category => (
-    <CategoryColumn category={category} key={category.id} />
-  ));
 
   const handleEditBoard = value => {
     console.log(value);
@@ -111,48 +107,89 @@ function Board() {
       }
     });
   };
+  
+  if (!boardData) return <Spinner />;
+  if (!categoryList) return <Spinner />;
+
+  const categories = categoryList.map(category => (
+    <CategoryColumn category={category} key={category.id} />
+  ));
+
+
+  const handleDeleteBoard = () => {
+    fetch(`/boards/${boardId}`, {
+      method: 'DELETE',
+    }).then(res =>{
+    if (res.ok) {
+      toast({
+        title: 'Board Deleted!',
+        description: "You have successfully deleted the board",
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
+      navigate(`/user-page`, { replace: true })
+    }
+    else {
+      res.json().then(errors => console.error(errors))
+    }
+  });
+  };
 
   return (
-    <Box>
-      <Heading>
-        <Editable defaultValue={boardData.title} onSubmit={handleEditBoard}>
-        <Tooltip label="Click to edit">
-          <EditablePreview
-            py={2}
-            px={4}
-            _hover={{
-              background: "gray.500"
-            }}
-          />
-        </Tooltip>
-          <EditableInput />
-        </Editable>
-      </Heading>
-      <HStack>
-        <ButtonGroup spacing={10}  >
-        {categories}
-
-        <FormControl>
-          {!show && <Button onClick={handleClick}>Add A Category</Button>}
-          {show && (
-            <InputGroup>
-              <Input
-                type="text"
-                name="title"
-                id="category_title_add"
-                placeholder="Enter Category Title"
-                value={formData}
-                onChange={e => setFormData(e.target.value)}
+    <>
+      <Box display="flex">
+        <Button
+          onClick={handleDeleteBoard}
+          variant="outline"
+          colorScheme="red"
+          alignSelf="left"
+        >
+          <DeleteIcon />
+          &ensp;Delete Board
+        </Button>
+      </Box>
+      <Box>
+        <Heading>
+          <Editable defaultValue={boardData.title} onSubmit={handleEditBoard}>
+            <Tooltip label="Click to edit">
+              <EditablePreview
+                py={2}
+                px={4}
+                _hover={{
+                  background: 'gray.500',
+                }}
               />
-              <Button type="submit" onClick={handleAddCategory}>
-                Create Category
-              </Button>
-            </InputGroup>
-          )}
-        </FormControl>
-        </ButtonGroup>
-      </HStack>
-    </Box>
+            </Tooltip>
+            <EditableInput />
+          </Editable>
+        </Heading>
+        <HStack>
+          <ButtonGroup spacing={10}>
+            {categories}
+
+            <FormControl>
+              {!show && <Button onClick={handleClick}>Add A Category</Button>}
+              {show && (
+                <InputGroup>
+                  <Input
+                    type="text"
+                    name="title"
+                    id="category_title_add"
+                    placeholder="Enter Category Title"
+                    value={formData}
+                    onChange={e => setFormData(e.target.value)}
+                  />
+                  <Button type="submit" onClick={handleAddCategory}>
+                    Create Category
+                  </Button>
+                </InputGroup>
+              )}
+            </FormControl>
+          </ButtonGroup>
+        </HStack>
+      </Box>
+    </>
   );
 }
 
