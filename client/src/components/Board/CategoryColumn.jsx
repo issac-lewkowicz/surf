@@ -1,5 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
   Button,
   Stack,
   HStack,
@@ -22,11 +28,14 @@ import {
   EditablePreview,
   Tooltip,
   IconButton,
+  useDisclosure,
 } from '@chakra-ui/react';
 import TaskCard from './TaskCard';
 import { DeleteIcon } from '@chakra-ui/icons';
 
 function CategoryColumn({ category, onDelete }) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = useRef();
   const { title, id, tasks } = category;
   const [taskList, setTaskList] = useState(null);
   const [newTaskData, setNewTaskData] = useState('');
@@ -82,6 +91,7 @@ function CategoryColumn({ category, onDelete }) {
 
   const onDeleteTask = id => {
     const updatedTaskList = taskList.filter(task => task.id !== id);
+    onClose();
     setTaskList(updatedTaskList);
   };
 
@@ -121,11 +131,33 @@ function CategoryColumn({ category, onDelete }) {
       borderColor="#ccd0d5"
     >
       <Heading fontSize="xl">
-        <IconButton
-          onClick={handleDeleteCategory}
-          colorScheme="red"
-          icon={<DeleteIcon />}
-        />
+        <IconButton onClick={onOpen} colorScheme="red" icon={<DeleteIcon />} />
+        <AlertDialog
+          isOpen={isOpen}
+          leastDestructiveRef={cancelRef}
+          onClose={onClose}
+        >
+          <AlertDialogOverlay>
+            <AlertDialogContent>
+              <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                Delete Category
+              </AlertDialogHeader>
+
+              <AlertDialogBody>
+                Are you sure you want to delete this category?
+              </AlertDialogBody>
+
+              <AlertDialogFooter>
+                <Button ref={cancelRef} onClick={onClose}>
+                  Cancel
+                </Button>
+                <Button colorScheme="red" onClick={handleDeleteCategory} ml={3}>
+                  Delete
+                </Button>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialogOverlay>
+        </AlertDialog>
         <Editable defaultValue={title} onSubmit={handleEditCategory}>
           <Tooltip label="Click to edit">
             <EditablePreview

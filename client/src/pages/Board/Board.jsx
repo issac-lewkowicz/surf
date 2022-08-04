@@ -37,8 +37,8 @@ import CategoryColumn from '../../components/Board/CategoryColumn';
 import { DeleteIcon } from '@chakra-ui/icons';
 
 function Board() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const cancelRef = useRef()
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = useRef();
   let { boardId } = useParams();
   let navigate = useNavigate();
   const toast = useToast();
@@ -72,6 +72,7 @@ function Board() {
     const updatedCategoryList = categoryList.filter(
       category => category.id !== id
     );
+    onClose();
     setCategoryList(updatedCategoryList);
   };
 
@@ -168,31 +169,31 @@ function Board() {
           &ensp;Delete Board
         </Button>
         <AlertDialog
-        isOpen={isOpen}
-        leastDestructiveRef={cancelRef}
-        onClose={onClose}
-      >
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader fontSize='lg' fontWeight='bold'>
-              Delete Board
-            </AlertDialogHeader>
+          isOpen={isOpen}
+          leastDestructiveRef={cancelRef}
+          onClose={onClose}
+        >
+          <AlertDialogOverlay>
+            <AlertDialogContent>
+              <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                Delete Board
+              </AlertDialogHeader>
 
-            <AlertDialogBody>
-              Are you sure? You can't undo this action afterwards.
-            </AlertDialogBody>
+              <AlertDialogBody>
+                Are you sure? You can't undo this action afterwards.
+              </AlertDialogBody>
 
-            <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
-                Cancel
-              </Button>
-              <Button colorScheme='red' onClick={handleDeleteBoard} ml={3}>
-                Delete
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogOverlay>
-      </AlertDialog>
+              <AlertDialogFooter>
+                <Button ref={cancelRef} onClick={onClose}>
+                  Cancel
+                </Button>
+                <Button colorScheme="red" onClick={handleDeleteBoard} ml={3}>
+                  Delete
+                </Button>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialogOverlay>
+        </AlertDialog>
       </Box>
       <Box>
         <Heading>
