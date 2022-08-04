@@ -21,6 +21,9 @@ import {
   EditableTextarea,
   EditablePreview,
   Spinner,
+  Tooltip,
+  useColorModeValue,
+  ButtonGroup,
 } from '@chakra-ui/react';
 import CategoryColumn from '../../components/Board/CategoryColumn';
 
@@ -113,11 +116,20 @@ function Board() {
     <Box>
       <Heading>
         <Editable defaultValue={boardData.title} onSubmit={handleEditBoard}>
-          <EditablePreview />
+        <Tooltip label="Click to edit">
+          <EditablePreview
+            py={2}
+            px={4}
+            _hover={{
+              background: "gray.500"
+            }}
+          />
+        </Tooltip>
           <EditableInput />
         </Editable>
       </Heading>
       <HStack>
+        <ButtonGroup spacing={10}  >
         {categories}
 
         <FormControl>
@@ -138,6 +150,7 @@ function Board() {
             </InputGroup>
           )}
         </FormControl>
+        </ButtonGroup>
       </HStack>
     </Box>
   );

@@ -13,6 +13,8 @@ import {
   EditableInput,
   EditableTextarea,
   EditablePreview,
+  Tooltip,
+  useColorModeValue,
 } from '@chakra-ui/react';
 
 function TaskCard({ task }) {
@@ -49,7 +51,15 @@ function TaskCard({ task }) {
       borderColor="#ccd0d5"
     >
       <Editable defaultValue={task.title} onSubmit={handleEditTaskCard}>
-        <EditablePreview />
+      <Tooltip label="Click to edit">
+          <EditablePreview
+            py={2}
+            px={4}
+            _hover={{
+              background: useColorModeValue('gray.200', 'gray.600'),
+            }}
+          />
+        </Tooltip>
         <EditableInput />
       </Editable>
     </Container>

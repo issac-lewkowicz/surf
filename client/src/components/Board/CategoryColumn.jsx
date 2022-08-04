@@ -20,6 +20,7 @@ import {
   EditableInput,
   EditableTextarea,
   EditablePreview,
+  Tooltip,
 } from '@chakra-ui/react';
 import TaskCard from './TaskCard';
 
@@ -107,10 +108,19 @@ function CategoryColumn({ category }) {
     >
       <Heading fontSize="xl">
         <Editable defaultValue={title} onSubmit={handleEditCategory}>
-          <EditablePreview />
+        <Tooltip label="Click to edit">
+          <EditablePreview
+            py={2}
+            px={4}
+            _hover={{
+              background: "gray.500"
+            }}
+          />
+        </Tooltip>
           <EditableInput />
         </Editable>
       </Heading>
+      <br/>
       <VStack spacing={4}>{taskCardList}</VStack>
       <FormControl>
         {!show && <Button onClick={handleClick}>New Task</Button>}
