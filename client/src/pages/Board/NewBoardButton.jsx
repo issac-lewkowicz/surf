@@ -48,7 +48,7 @@ function NewBoardButton({ team }) {
       if (res.ok) {
         res.json().then(board => {
           setFormData('');
-          console.log('post new board button clicked');
+          // console.log('post new board button clicked');
           navigate(`/board/${board.id}`, { replace: true });
         });
       } else {

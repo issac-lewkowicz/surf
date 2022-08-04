@@ -1,5 +1,11 @@
 import React from 'react';
 import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
   Stack,
   HStack,
   VStack,
@@ -16,10 +22,14 @@ import {
   Tooltip,
   useColorModeValue,
   IconButton,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 
 function TaskCard({ task, onDeleteTask }) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = React.useRef();
+
   const handleEditTaskCard = value => {
     console.log(value);
 
@@ -63,11 +73,33 @@ function TaskCard({ task, onDeleteTask }) {
       borderColor="#ccd0d5"
     >
       <Editable defaultValue={task.title} onSubmit={handleEditTaskCard}>
-        <IconButton
-          onClick={handleDeleteTask}
-          colorScheme="red"
-          icon={<DeleteIcon />}
-        />
+        <IconButton onClick={onOpen} colorScheme="red" icon={<DeleteIcon />} />
+        <AlertDialog
+          isOpen={isOpen}
+          leastDestructiveRef={cancelRef}
+          onClose={onClose}
+        >
+          <AlertDialogOverlay>
+            <AlertDialogContent>
+              <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                Delete Task
+              </AlertDialogHeader>
+
+              <AlertDialogBody>
+                Are you sure you want to delete this task?
+              </AlertDialogBody>
+
+              <AlertDialogFooter>
+                <Button ref={cancelRef} onClick={onClose}>
+                  Cancel
+                </Button>
+                <Button colorScheme="red" onClick={handleDeleteTask} ml={3}>
+                  Delete
+                </Button>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialogOverlay>
+        </AlertDialog>
         <Tooltip label="Click to edit">
           <EditablePreview
             py={2}

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import { useNavigate } from "react-router-dom";
 import JoinedTeamList from './Team/JoinedTeamList';
 // import OwnedTeamList from './OwnedTeamList';
@@ -12,20 +12,23 @@ function UserPage({currentUser, setActiveUser}) {
   // const { isOpen, onOpen, onClose } = useDisclosure()
   let navigate = useNavigate()
   const toast = useToast()
-
-
+  const userRef = useRef(currentUser);
+  userRef.current = currentUser
 
   useEffect(() => {
-    if (currentUser === null) {
+    const timedCheck = setTimeout(() => {
+    if (userRef.current === null) {
       toast({
         title: 'Not Logged In!',
-        description: "You are NOT logged in - Redirecting.",
+        description: "You are NOT logged in",
         status: 'warning',
         duration: 3000,
         isClosable: true,
       })
       navigate(`/`, { replace: true })
     }
+  }, 300)
+  return () => clearTimeout(timedCheck);
   }, [])
 
     const handleClickJoin = () => navigate(`/join-teams`, { replace: true })
