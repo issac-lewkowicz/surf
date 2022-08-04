@@ -1,6 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
   Button,
   Stack,
   HStack,
@@ -25,11 +31,14 @@ import {
   useColorModeValue,
   ButtonGroup,
   useToast,
+  useDisclosure,
 } from '@chakra-ui/react';
 import CategoryColumn from '../../components/Board/CategoryColumn';
 import { DeleteIcon } from '@chakra-ui/icons';
 
 function Board() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const cancelRef = useRef()
   let { boardId } = useParams();
   let navigate = useNavigate();
   const toast = useToast();
@@ -131,6 +140,7 @@ function Board() {
       method: 'DELETE',
     }).then(res => {
       if (res.ok) {
+        onClose();
         toast({
           title: 'Board Deleted!',
           description: 'You have successfully deleted the board',
@@ -149,7 +159,7 @@ function Board() {
     <>
       <Box display="flex">
         <Button
-          onClick={handleDeleteBoard}
+          onClick={onOpen}
           variant="outline"
           colorScheme="red"
           alignSelf="left"
@@ -157,6 +167,32 @@ function Board() {
           <DeleteIcon />
           &ensp;Delete Board
         </Button>
+        <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+              Delete Board
+            </AlertDialogHeader>
+
+            <AlertDialogBody>
+              Are you sure? You can't undo this action afterwards.
+            </AlertDialogBody>
+
+            <AlertDialogFooter>
+              <Button ref={cancelRef} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button colorScheme='red' onClick={handleDeleteBoard} ml={3}>
+                Delete
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
       </Box>
       <Box>
         <Heading>
