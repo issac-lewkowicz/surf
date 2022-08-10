@@ -109,6 +109,7 @@ function TaskCard({ task, onDeleteTask }) {
         </AlertDialog>
         <Tooltip label="Click to edit">
           <EditablePreview
+          
             py={2}
             px={4}
             _hover={{
@@ -116,7 +117,7 @@ function TaskCard({ task, onDeleteTask }) {
             }}
           />
         </Tooltip>
-        <EditableTextarea />
+        <EditableTextarea textAlign='left' />
       </Editable>
       </HStack>
   );

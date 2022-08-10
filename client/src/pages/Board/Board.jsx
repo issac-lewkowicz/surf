@@ -33,6 +33,7 @@ import {
   useToast,
   useDisclosure,
   Grid,
+  GridItem,
 } from '@chakra-ui/react';
 import CategoryColumn from '../../components/Board/CategoryColumn';
 import { DeleteIcon } from '@chakra-ui/icons';
@@ -170,7 +171,7 @@ function Board() {
 
   return (
     <div margin="auto" padding="10px">
-      <Box overflowX="auto" p="30px" height="94.5vh">
+      <Box overflowX="auto" p="30px" height="94.5vh" overflowY="hidden">
         <DeleteBoardButton handleDeleteBoard={handleDeleteBoard} />
         <Heading>
           <Editable defaultValue={boardData.title} onSubmit={handleEditBoard}>
@@ -178,14 +179,16 @@ function Board() {
             <EditableInput />
           </Editable>
         </Heading>
-        <Grid >
-          <ButtonGroup spacing={10}>
+        <Grid row={1} display="inline-flex" gap={5} justifySelf='start' minWidth="98vw">
+          {/* <ButtonGroup spacing={10}> */}
             {categories}
 
-            <>
-              {!show && <Button onClick={handleClick}>Add A Category</Button>}
+          {/* </ButtonGroup> */}
+            <GridItem>
+              {!show && <Button onClick={handleClick}>Add A List</Button>}
               {show && (
                 <InputGroup>
+              <VStack>
                   <Input
                     // htmlSize={4}
                     width="auto"
@@ -197,12 +200,12 @@ function Board() {
                     onChange={e => setFormData(e.target.value)}
                   />
                   <Button type="submit" onClick={handleAddCategory}>
-                    Create Category
+                    Create List
                   </Button>
+              </VStack>
                 </InputGroup>
               )}
-            </>
-          </ButtonGroup>
+            </GridItem>
         </Grid>
       </Box>
     </div>

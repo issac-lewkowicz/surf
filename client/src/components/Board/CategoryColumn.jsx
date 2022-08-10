@@ -30,6 +30,7 @@ import {
   IconButton,
   useDisclosure,
   SimpleGrid,
+  GridItem,
 } from '@chakra-ui/react';
 import TaskCard from './TaskCard';
 import { DeleteIcon } from '@chakra-ui/icons';
@@ -123,19 +124,16 @@ function CategoryColumn({ category, onDelete }) {
   };
 
   return (
-    <Box
+    <GridItem
     // display='flex'
       border="1px"
       p="10px"
       borderRadius="2px"
-      // fontSize="15px"
       fontWeight="bold"
       borderColor="#ccd0d5"
       width="320px"
       height="fit-content"
       overflowY="auto"
-      // mt="10px"
-      // mx="10px"
       maxHeight="75vh"
       justify='start'
       
@@ -154,7 +152,7 @@ function CategoryColumn({ category, onDelete }) {
               </AlertDialogHeader>
 
               <AlertDialogBody>
-                Are you sure you want to delete this category?
+                Are you sure you want to delete this list?
               </AlertDialogBody>
 
               <AlertDialogFooter>
@@ -203,7 +201,7 @@ function CategoryColumn({ category, onDelete }) {
           </InputGroup>
         )}
       </FormControl>
-    </Box>
+    </GridItem>
   );
 }
 
