@@ -29,6 +29,7 @@ import {
   Tooltip,
   IconButton,
   useDisclosure,
+  SimpleGrid,
 } from '@chakra-ui/react';
 import TaskCard from './TaskCard';
 import { DeleteIcon } from '@chakra-ui/icons';
@@ -42,7 +43,7 @@ function CategoryColumn({ category, onDelete }) {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTaskList(tasks);
   }, []);
 
@@ -122,15 +123,24 @@ function CategoryColumn({ category, onDelete }) {
   };
 
   return (
-    <Container
+    <Box
+    // display='flex'
       border="1px"
-      p="8px"
+      p="10px"
       borderRadius="2px"
-      fontSize="15px"
+      // fontSize="15px"
       fontWeight="bold"
       borderColor="#ccd0d5"
+      width="320px"
+      height="fit-content"
+      overflowY="auto"
+      // mt="10px"
+      // mx="10px"
+      maxHeight="75vh"
+      justify='start'
+      
     >
-      <Heading fontSize="xl">
+      <Heading fontSize="xl" display='flex'>
         <IconButton onClick={onOpen} colorScheme="red" icon={<DeleteIcon />} />
         <AlertDialog
           isOpen={isOpen}
@@ -172,7 +182,9 @@ function CategoryColumn({ category, onDelete }) {
         </Editable>
       </Heading>
       <br />
-      <VStack spacing={4}>{taskCardList}</VStack>
+      <SimpleGrid columns={1} spacing={10}>{taskCardList}</SimpleGrid>
+      {/* <VStack spacing={4} p={2} m={2} justify="flex-start" >{taskCardList}</VStack> */}
+      <br/>
       <FormControl>
         {!show && <Button onClick={handleClick}>New Task</Button>}
         {show && (
@@ -191,7 +203,7 @@ function CategoryColumn({ category, onDelete }) {
           </InputGroup>
         )}
       </FormControl>
-    </Container>
+    </Box>
   );
 }
 

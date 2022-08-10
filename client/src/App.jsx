@@ -19,13 +19,6 @@ import JoinableTeams from './pages/UserPage/Team/JoinableTeams';
 // import { Logo } from './assets/Logo';
 
 function App() {
-  // const [count, setCount] = useState(0);
-
-  // useEffect(() => {
-  //   fetch('/hello')
-  //     .then(r => r.json())
-  //     .then(data => setCount(data.count));
-  // }, []);
 
   const [currentUser, setCurrentUser] = useState(null)
   const handleSetUser = (activeUser) => setCurrentUser(activeUser)

@@ -32,9 +32,11 @@ import {
   ButtonGroup,
   useToast,
   useDisclosure,
+  Grid,
 } from '@chakra-ui/react';
 import CategoryColumn from '../../components/Board/CategoryColumn';
 import { DeleteIcon } from '@chakra-ui/icons';
+import DeleteBoardButton from './DeleteBoardButton';
 
 function Board() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -125,6 +127,16 @@ function Board() {
     });
   };
 
+  const preview = (
+    <EditablePreview
+      py={2}
+      px={4}
+      _hover={{
+        background: useColorModeValue('gray.100', 'gray.700'),
+      }}
+    />
+  );
+
   if (!boardData) return <Spinner />;
   if (!categoryList) return <Spinner />;
 
@@ -157,68 +169,26 @@ function Board() {
   };
 
   return (
-    <>
-      <Box display="flex">
-        <Button
-          onClick={onOpen}
-          variant="outline"
-          colorScheme="red"
-          alignSelf="left"
-        >
-          <DeleteIcon />
-          &ensp;Delete Board
-        </Button>
-        <AlertDialog
-          isOpen={isOpen}
-          leastDestructiveRef={cancelRef}
-          onClose={onClose}
-        >
-          <AlertDialogOverlay>
-            <AlertDialogContent>
-              <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                Delete Board
-              </AlertDialogHeader>
-
-              <AlertDialogBody>
-                Are you sure? You can't undo this action afterwards.
-              </AlertDialogBody>
-
-              <AlertDialogFooter>
-                <Button ref={cancelRef} onClick={onClose}>
-                  Cancel
-                </Button>
-                <Button colorScheme="red" onClick={handleDeleteBoard} ml={3}>
-                  Delete
-                </Button>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialogOverlay>
-        </AlertDialog>
-      </Box>
-      <Box>
+    <div margin="auto" padding="10px">
+      <Box overflowX="scroll" p="30px">
+        <DeleteBoardButton handleDeleteBoard={handleDeleteBoard} />
         <Heading>
           <Editable defaultValue={boardData.title} onSubmit={handleEditBoard}>
-            <Tooltip label="Click to edit">
-              <EditablePreview
-                py={2}
-                px={4}
-                _hover={{
-                  background: 'gray.500',
-                }}
-              />
-            </Tooltip>
+            <Tooltip label="Click to edit">{preview}</Tooltip>
             <EditableInput />
           </Editable>
         </Heading>
-        <HStack>
+        <Grid row={1}>
           <ButtonGroup spacing={10}>
             {categories}
 
-            <FormControl>
+            <>
               {!show && <Button onClick={handleClick}>Add A Category</Button>}
               {show && (
                 <InputGroup>
                   <Input
+                    // htmlSize={4}
+                    width="auto"
                     type="text"
                     name="title"
                     id="category_title_add"
@@ -231,11 +201,11 @@ function Board() {
                   </Button>
                 </InputGroup>
               )}
-            </FormControl>
+            </>
           </ButtonGroup>
-        </HStack>
+        </Grid>
       </Box>
-    </>
+    </div>
   );
 }
 

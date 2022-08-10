@@ -23,6 +23,7 @@ import {
   useColorModeValue,
   IconButton,
   useDisclosure,
+  Flex,
 } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 
@@ -64,16 +65,22 @@ function TaskCard({ task, onDeleteTask }) {
   };
 
   return (
-    <Container
+    <HStack
+    // row={1}
+    // align="left" 
+    // justify="left"
       border="1px"
       p="8px"
       borderRadius="2px"
       fontSize="15px"
       fontWeight="bold"
       borderColor="#ccd0d5"
+      // wrap='wrap'
+      // maxWidth="100px"
+      
     >
-      <Editable defaultValue={task.title} onSubmit={handleEditTaskCard}>
         <IconButton onClick={onOpen} colorScheme="red" icon={<DeleteIcon />} />
+      <Editable defaultValue={task.title} onSubmit={handleEditTaskCard} wrap='wrap'>
         <AlertDialog
           isOpen={isOpen}
           leastDestructiveRef={cancelRef}
@@ -105,13 +112,13 @@ function TaskCard({ task, onDeleteTask }) {
             py={2}
             px={4}
             _hover={{
-              background: useColorModeValue('gray.200', 'gray.600'),
+              background: useColorModeValue('gray.100', 'gray.700'),
             }}
           />
         </Tooltip>
-        <EditableInput />
+        <EditableTextarea />
       </Editable>
-    </Container>
+      </HStack>
   );
 }
 
