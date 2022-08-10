@@ -188,14 +188,14 @@ function Board() {
               {!show && <Button onClick={handleClick}>Add A List</Button>}
               {show && (
                 <InputGroup>
-              <VStack>
+              <VStack align="left">
                   <Input
                     // htmlSize={4}
                     width="auto"
                     type="text"
                     name="title"
                     id="category_title_add"
-                    placeholder="Enter Category Title"
+                    placeholder="Enter list title..."
                     value={formData}
                     onChange={e => setFormData(e.target.value)}
                   />

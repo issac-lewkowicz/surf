@@ -148,7 +148,7 @@ function CategoryColumn({ category, onDelete }) {
           <AlertDialogOverlay>
             <AlertDialogContent>
               <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                Delete Category
+                Delete List
               </AlertDialogHeader>
 
               <AlertDialogBody>
@@ -184,14 +184,14 @@ function CategoryColumn({ category, onDelete }) {
       {/* <VStack spacing={4} p={2} m={2} justify="flex-start" >{taskCardList}</VStack> */}
       <br/>
       <FormControl>
-        {!show && <Button onClick={handleClick}>New Task</Button>}
+        {!show && <Button onClick={handleClick}>New Card</Button>}
         {show && (
           <InputGroup>
             <Input
               type="text"
               name="task_title"
               id="task_title_add"
-              placeholder="Enter Task Title"
+              placeholder="Enter card title..."
               value={newTaskData}
               onChange={e => setNewTaskData(e.target.value)}
             />

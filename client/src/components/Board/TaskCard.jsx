@@ -89,11 +89,11 @@ function TaskCard({ task, onDeleteTask }) {
           <AlertDialogOverlay>
             <AlertDialogContent>
               <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                Delete Task
+                Delete Card
               </AlertDialogHeader>
 
               <AlertDialogBody>
-                Are you sure you want to delete this task?
+                Are you sure you want to delete this card?
               </AlertDialogBody>
 
               <AlertDialogFooter>
