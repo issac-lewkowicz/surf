@@ -170,7 +170,7 @@ function Board() {
 
   return (
     <div margin="auto" padding="10px">
-      <Box overflowX="scroll" p="30px">
+      <Box overflowX="auto" p="30px" height="94.5vh">
         <DeleteBoardButton handleDeleteBoard={handleDeleteBoard} />
         <Heading>
           <Editable defaultValue={boardData.title} onSubmit={handleEditBoard}>
@@ -178,7 +178,7 @@ function Board() {
             <EditableInput />
           </Editable>
         </Heading>
-        <Grid row={1}>
+        <Grid >
           <ButtonGroup spacing={10}>
             {categories}
 
