@@ -41,7 +41,7 @@ import DeleteBoardButton from './DeleteBoardButton';
 
 function Board() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const cancelRef = useRef();
+  const newCategoryButton = useRef();
   let { boardId } = useParams();
   let navigate = useNavigate();
   const toast = useToast();
@@ -65,6 +65,9 @@ function Board() {
       }
     });
   }, []);
+
+ 
+
 
   const onAddCategory = newCategory => {
     const updatedCategoryList = [...categoryList, newCategory];
@@ -96,6 +99,7 @@ function Board() {
           onAddCategory(newCategory);
           handleClick();
           setFormData('');
+          
         });
       } else {
         res.json().then(errors => {
@@ -185,7 +189,7 @@ function Board() {
 
           {/* </ButtonGroup> */}
             <GridItem>
-              {!show && <Button onClick={handleClick}>Add A List</Button>}
+              {!show && <Button ref={newCategoryButton} onClick={handleClick}>Add A List</Button>}
               {show && (
                 <InputGroup>
               <VStack align="left">
