@@ -75,6 +75,7 @@ function TaskCard({ task, onDeleteTask }) {
       fontSize="15px"
       fontWeight="bold"
       borderColor="#ccd0d5"
+      boxShadow="md"
       // wrap='wrap'
       // maxWidth="100px"
       

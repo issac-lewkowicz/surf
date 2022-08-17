@@ -86,12 +86,11 @@ function Login({setActiveUser}) {
 
 
   return (
-    <VStack spacing={4}>
-    <br />
-    <FormControl minW="23vw" maxW="75vw">
-    <FormLabel>Login:</FormLabel>
-    <Input type="text" name="username" id="username__login" placeholder="Username" value={formData.username} onChange={updateFormData} />
-    <InputGroup size='lg' >
+    <VStack spacing={4} border="1px" px={6} py={8} borderRadius="1rem" borderColor="#ccd0d5" boxShadow="lg">
+    <FormControl minW="23vw" maxW="75vw" >
+    {/* <FormLabel>Login:</FormLabel> */}
+    <Input type="text" name="username" id="username__login" placeholder="Username" value={formData.username} onChange={updateFormData} marginBottom={2} />
+    <InputGroup >
     <Input
       id="password__login"
       max={30} 

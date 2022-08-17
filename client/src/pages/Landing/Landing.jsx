@@ -55,6 +55,7 @@ function Landing({ setActiveUser, currentUser }) {
       <br />
       <Heading>Welcome to Surf!</Heading>
       <Text>Make work a breeze</Text>
+      <br />
       <Center>
         <Login setActiveUser={setActiveUser} />
       </Center>

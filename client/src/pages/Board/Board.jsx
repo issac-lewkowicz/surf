@@ -189,7 +189,7 @@ function Board() {
 
           {/* </ButtonGroup> */}
             <GridItem>
-              {!show && <Button ref={newCategoryButton} onClick={handleClick}>Add A List</Button>}
+              {!show && <Button ref={newCategoryButton} onClick={handleClick} boxShadow="md">Add A List</Button>}
               {show && (
                 <InputGroup>
               <VStack align="left">

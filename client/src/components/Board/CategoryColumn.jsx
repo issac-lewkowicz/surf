@@ -136,6 +136,7 @@ function CategoryColumn({ category, onDelete }) {
       overflowY="auto"
       maxHeight="75vh"
       justify='start'
+      boxShadow="md"
       
     >
       <Heading fontSize="xl" display='flex'>
@@ -159,7 +160,7 @@ function CategoryColumn({ category, onDelete }) {
                 <Button ref={cancelRef} onClick={onClose}>
                   Cancel
                 </Button>
-                <Button colorScheme="red" onClick={handleDeleteCategory} ml={3}>
+                <Button colorScheme="red" onClick={handleDeleteCategory} ml={3} >
                   Delete
                 </Button>
               </AlertDialogFooter>
@@ -180,11 +181,11 @@ function CategoryColumn({ category, onDelete }) {
         </Editable>
       </Heading>
       <br />
-      <SimpleGrid columns={1} spacing={10}>{taskCardList}</SimpleGrid>
+      <SimpleGrid columns={1} spacing={4}>{taskCardList}</SimpleGrid>
       {/* <VStack spacing={4} p={2} m={2} justify="flex-start" >{taskCardList}</VStack> */}
       <br/>
       <FormControl>
-        {!show && <Button onClick={handleClick}>New Card</Button>}
+        {!show && <Button onClick={handleClick} boxShadow="md" >New Card</Button>}
         {show && (
           <InputGroup>
             <Input
@@ -195,7 +196,7 @@ function CategoryColumn({ category, onDelete }) {
               value={newTaskData}
               onChange={e => setNewTaskData(e.target.value)}
             />
-            <Button type="submit" onClick={handleAddTask}>
+            <Button type="submit" onClick={handleAddTask} boxShadow="md">
               Add Task
             </Button>
           </InputGroup>
