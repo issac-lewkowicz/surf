@@ -21,7 +21,7 @@ function Navbar({currentUser, setActiveUser}) {
   console.log(currentUser)
   return (
     <HStack px="5vw" py="2vh" spacing="auto">
-    <NavLink to="/">Surf-Logo</NavLink>
+    <NavLink to="/user-page">Surf-Logo</NavLink>
     <HStack spacing="1vw">
     {currentUser && avatar}
     <Logout setActiveUser={setActiveUser}/>
