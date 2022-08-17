@@ -62,7 +62,8 @@ function NewBoardButton({ team }) {
   return (
     <>
       <Button
-        marginStart={3}
+        marginLeft={3}
+        marginRight={0}
         colorScheme="green"
         onClick={onOpen}
       >

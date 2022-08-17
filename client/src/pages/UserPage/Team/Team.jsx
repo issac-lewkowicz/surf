@@ -60,7 +60,7 @@ function Team({ team }) {
   return (
     <AccordionItem>
       <Heading fontSize="xl" >
-        <AccordionButton>
+        <AccordionButton >
           <Box flex="1" textAlign="left">
             <Editable defaultValue={team.team_name} onSubmit={handleEditTeam} fontWeight="bold">
               <Tooltip label="Click to edit">

@@ -40,9 +40,12 @@ function JoinedTeamList({currentUser}) {
   return (
     <>
     <Center>
-    <Accordion w="75vw">{joinedTeams} </Accordion>
+    <Accordion w="75vw" allowMultiple>{joinedTeams} </Accordion>
     </Center>
+    <br />
+    <Center>
     <NewTeam currentUser={currentUser} onAddTeam={handleAddTeam} />
+    </Center>
     </>
   )
 }

@@ -38,10 +38,10 @@ function NewTeam({currentUser, onAddTeam}) {
   
   return (
     <div>
-      <FormControl>
-        {!show && (<Button onClick={handleClick}>Create A Team</Button>)}
-        {show && (<InputGroup><Input type="text" name="team_name" id="team_name_add" placeholder="Enter Team Name" value={formData} onChange={(e) => setFormData(e.target.value)} /> 
-        <Button type='submit' onClick={handleSubmit}>Create</Button></InputGroup>)}
+      <FormControl align="center" w="75vw" paddingRight={4}>
+        {!show && (<Button colorScheme="blue" onClick={handleClick}>Create A Team</Button>)}
+        {show && (<InputGroup ><Input type="text" name="team_name" id="team_name_add" placeholder="Enter Team Name" value={formData} onChange={(e) => setFormData(e.target.value)} /> 
+        <Button colorScheme="blue" type='submit' onClick={handleSubmit}>Create</Button></InputGroup>)}
       </FormControl>
     </div>
   )
