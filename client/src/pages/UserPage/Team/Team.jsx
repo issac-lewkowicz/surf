@@ -22,7 +22,7 @@ import {
   Heading,
 } from '@chakra-ui/react';
 import { CheckIcon, CloseIcon, EditIcon } from '@chakra-ui/icons';
-import BoardButton from '../../Board/BoardButton';
+import BoardButton from '../BoardButton';
 import NewBoardButton from '../../Board/NewBoardButton';
 
 function Team({ team }) {
@@ -62,7 +62,7 @@ function Team({ team }) {
       <Heading fontSize="xl" >
         <AccordionButton>
           <Box flex="1" textAlign="left">
-            <Editable defaultValue={team.team_name} onSubmit={handleEditTeam}>
+            <Editable defaultValue={team.team_name} onSubmit={handleEditTeam} fontWeight="bold">
               <Tooltip label="Click to edit">
                 <EditablePreview
                   py={2}
@@ -76,11 +76,11 @@ function Team({ team }) {
             </Editable>
           </Box>
           <AccordionIcon />
+        <NewBoardButton team={team} />
         </AccordionButton>
       </Heading>
-      <AccordionPanel pb={4}>
+      <AccordionPanel pb={4} >
         {boardList}
-        <NewBoardButton team={team} />
       </AccordionPanel>
     </AccordionItem>
   );

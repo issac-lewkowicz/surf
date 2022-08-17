@@ -20,7 +20,7 @@ function BoardButton({board}) {
   transition='all 0.2s cubic-bezier(.98,.92,.92,1)'
   border='1px'
   px='8px'
-  mx={2}
+  m={2}
   borderRadius='2px'
   fontSize='15px'
   fontWeight='bold'
