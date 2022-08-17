@@ -25,7 +25,7 @@ function JoinedTeamList({currentUser}) {
         }, [])
 
     if (!allTeams) return <Spinner />
-  // let joinedTeams = (currentUser.teams && currentUser.teams.map(team => 
+
   let joinedTeams = (allTeams && allTeams.map(team => 
         <Team team={team} key={team.id}/>
   ))
@@ -40,7 +40,7 @@ function JoinedTeamList({currentUser}) {
   return (
     <>
     <Center>
-    <Accordion minW="23vw" maxW="75vw">{joinedTeams} </Accordion>
+    <Accordion w="75vw">{joinedTeams} </Accordion>
     </Center>
     <NewTeam currentUser={currentUser} onAddTeam={handleAddTeam} />
     </>
