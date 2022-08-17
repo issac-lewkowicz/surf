@@ -58,27 +58,6 @@ function Landing({ setActiveUser, currentUser }) {
       <Center>
         <Login setActiveUser={setActiveUser} />
       </Center>
-      <br />
-      <Button onClick={onOpen} colorScheme="green">
-        Create new account
-      </Button>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Sign Up</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Signup setActiveUser={setActiveUser} />
-          </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-            {/* <Button variant='ghost'>Secondary Action</Button> */}
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
     </div>
   );
 }
