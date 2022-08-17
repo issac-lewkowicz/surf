@@ -16,6 +16,7 @@ import Signup from './pages/Signup/Signup';
 import UserPage from './pages/UserPage/UserPage';
 import Board from './pages/Board/Board';
 import JoinableTeams from './pages/UserPage/Team/JoinableTeams';
+import Navbar from './components/Navbar/Navbar';
 // import { Logo } from './assets/Logo';
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
 
   return (
     <ChakraProvider theme={theme}>
-          <ColorModeSwitcher justifySelf="flex-end" />
+          <Navbar currentUser={currentUser} setActiveUser={handleSetUser} />
       <Box textAlign="center" fontSize="xl">
         {/* <Grid minH="100vh" p={3}> */}
             <Routes>

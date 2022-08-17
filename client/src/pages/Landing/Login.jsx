@@ -3,7 +3,7 @@
 // import {login} from './loginSlice'
 import React, {useState} from 'react'
 import { useNavigate } from "react-router-dom";
-import { ChakraProvider, Box, Text, Link, VStack, Code, Grid, theme, Button, FormControl, FormLabel, FormErrorMessage, FormHelperText, Input, InputGroup, InputRightElement, useToast } from '@chakra-ui/react';
+import { ChakraProvider, Box, Text, Link, VStack, Code, Grid, theme, Button, FormControl, FormLabel, FormErrorMessage, FormHelperText, Input, InputGroup, InputRightElement, useToast, Divider } from '@chakra-ui/react';
 
 function Login({setActiveUser}) {
   // const user = useSelector((state) => state.login.)
@@ -55,11 +55,11 @@ function Login({setActiveUser}) {
 
   return (
     <VStack spacing={4}>
-
-    <FormControl>
+    <br />
+    <FormControl minW="23vw" maxW="75vw">
     <FormLabel>Login:</FormLabel>
     <Input type="text" name="username" id="username__login" placeholder="Username" value={formData.username} onChange={updateFormData} />
-    <InputGroup size='md'>
+    <InputGroup size='lg' >
     <Input
       id="password__login"
       max={30} 
@@ -77,8 +77,8 @@ function Login({setActiveUser}) {
     </InputRightElement>
     </InputGroup>
     </FormControl>
-    <br/>
-    <Button type='submit' onClick={handleSubmit}>LogIn</Button>
+    <Button minW="23vw" maxW="75vw" colorScheme="blue" type='submit' onClick={handleSubmit}>Log In</Button>
+    <Divider />
 </VStack>
   )
 }

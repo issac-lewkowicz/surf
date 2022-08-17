@@ -39,7 +39,6 @@ function UserPage({currentUser, setActiveUser}) {
   return (
     <div>
       <ButtonGroup>
-        <Logout setActiveUser={setActiveUser}/>
         <Button onClick={handleClickJoin} >Join a Team</Button>
       </ButtonGroup>
       <h2>My Teams</h2>
