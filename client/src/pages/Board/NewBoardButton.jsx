@@ -63,19 +63,20 @@ function NewBoardButton({ team }) {
     <>
       <Box
         as="button"
-        height="75px"
-        width="150px"
+        height='60px'
+        width='120px'
         lineHeight="1.2"
         transition="all 0.2s cubic-bezier(.98,.92,.92,1)"
         border="1px"
         px="8px"
+        m={2}
         borderRadius="2px"
         fontSize="15px"
         fontWeight="bold"
-        bg="#f5f6f7"
+        bg="green.200"
         borderColor="#ccd0d5"
         color="#4b4f56"
-        _hover={{ bg: '#ebedf0' }}
+        _hover={{ bg: 'green.400' }}
         _active={{
           bg: '#dddfe2',
           transform: 'scale(0.98)',

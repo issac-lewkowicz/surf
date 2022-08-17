@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Team from './Team'
-import { Accordion, Spinner, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, ChakraProvider, Box, Text, Link, VStack, Code, Grid, theme, Button, FormControl, FormLabel, FormErrorMessage, FormHelperText, Input, InputGroup, InputRightElement, useToast,   Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody,  ModalCloseButton, useDisclosure} from '@chakra-ui/react';
+import { Accordion, Spinner, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, ChakraProvider, Box, Text, Link, VStack, Code, Grid, theme, Button, FormControl, FormLabel, FormErrorMessage, FormHelperText, Input, InputGroup, InputRightElement, useToast,   Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody,  ModalCloseButton, useDisclosure, Center} from '@chakra-ui/react';
 import NewTeam from './NewTeam';
 
 
@@ -39,7 +39,9 @@ function JoinedTeamList({currentUser}) {
 
   return (
     <>
-    <Accordion>{joinedTeams} </Accordion>
+    <Center>
+    <Accordion minW="23vw" maxW="75vw">{joinedTeams} </Accordion>
+    </Center>
     <NewTeam currentUser={currentUser} onAddTeam={handleAddTeam} />
     </>
   )

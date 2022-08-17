@@ -14,12 +14,13 @@ function BoardButton({board}) {
   return (
 <Box
   as='button'
-  height='75px'
-  width='150px'
+  height='60px'
+  width='120px'
   lineHeight='1.2'
   transition='all 0.2s cubic-bezier(.98,.92,.92,1)'
   border='1px'
   px='8px'
+  mx={2}
   borderRadius='2px'
   fontSize='15px'
   fontWeight='bold'
