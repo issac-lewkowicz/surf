@@ -29,6 +29,8 @@ import {
   Tooltip,
   IconButton,
   useDisclosure,
+  SimpleGrid,
+  GridItem,
 } from '@chakra-ui/react';
 import TaskCard from './TaskCard';
 import { DeleteIcon } from '@chakra-ui/icons';
@@ -42,7 +44,7 @@ function CategoryColumn({ category, onDelete }) {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTaskList(tasks);
   }, []);
 
@@ -122,15 +124,22 @@ function CategoryColumn({ category, onDelete }) {
   };
 
   return (
-    <Container
+    <GridItem
+    // display='flex'
       border="1px"
-      p="8px"
+      p="10px"
       borderRadius="2px"
-      fontSize="15px"
       fontWeight="bold"
       borderColor="#ccd0d5"
+      width="320px"
+      height="fit-content"
+      overflowY="auto"
+      maxHeight="75vh"
+      justify='start'
+      boxShadow="md"
+      
     >
-      <Heading fontSize="xl">
+      <Heading fontSize="xl" display='flex'>
         <IconButton onClick={onOpen} colorScheme="red" icon={<DeleteIcon />} />
         <AlertDialog
           isOpen={isOpen}
@@ -140,18 +149,18 @@ function CategoryColumn({ category, onDelete }) {
           <AlertDialogOverlay>
             <AlertDialogContent>
               <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                Delete Category
+                Delete List
               </AlertDialogHeader>
 
               <AlertDialogBody>
-                Are you sure you want to delete this category?
+                Are you sure you want to delete this list?
               </AlertDialogBody>
 
               <AlertDialogFooter>
                 <Button ref={cancelRef} onClick={onClose}>
                   Cancel
                 </Button>
-                <Button colorScheme="red" onClick={handleDeleteCategory} ml={3}>
+                <Button colorScheme="red" onClick={handleDeleteCategory} ml={3} >
                   Delete
                 </Button>
               </AlertDialogFooter>
@@ -172,26 +181,28 @@ function CategoryColumn({ category, onDelete }) {
         </Editable>
       </Heading>
       <br />
-      <VStack spacing={4}>{taskCardList}</VStack>
+      <SimpleGrid columns={1} spacing={4}>{taskCardList}</SimpleGrid>
+      {/* <VStack spacing={4} p={2} m={2} justify="flex-start" >{taskCardList}</VStack> */}
+      <br/>
       <FormControl>
-        {!show && <Button onClick={handleClick}>New Task</Button>}
+        {!show && <Button onClick={handleClick} boxShadow="md" >New Card</Button>}
         {show && (
           <InputGroup>
             <Input
               type="text"
               name="task_title"
               id="task_title_add"
-              placeholder="Enter Task Title"
+              placeholder="Enter card title..."
               value={newTaskData}
               onChange={e => setNewTaskData(e.target.value)}
             />
-            <Button type="submit" onClick={handleAddTask}>
+            <Button type="submit" onClick={handleAddTask} boxShadow="md">
               Add Task
             </Button>
           </InputGroup>
         )}
       </FormControl>
-    </Container>
+    </GridItem>
   );
 }
 

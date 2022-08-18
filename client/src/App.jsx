@@ -16,16 +16,10 @@ import Signup from './pages/Signup/Signup';
 import UserPage from './pages/UserPage/UserPage';
 import Board from './pages/Board/Board';
 import JoinableTeams from './pages/UserPage/Team/JoinableTeams';
+import Navbar from './components/Navbar/Navbar';
 // import { Logo } from './assets/Logo';
 
 function App() {
-  // const [count, setCount] = useState(0);
-
-  // useEffect(() => {
-  //   fetch('/hello')
-  //     .then(r => r.json())
-  //     .then(data => setCount(data.count));
-  // }, []);
 
   const [currentUser, setCurrentUser] = useState(null)
   const handleSetUser = (activeUser) => setCurrentUser(activeUser)
@@ -48,7 +42,7 @@ function App() {
 
   return (
     <ChakraProvider theme={theme}>
-          <ColorModeSwitcher justifySelf="flex-end" />
+          <Navbar currentUser={currentUser} setActiveUser={handleSetUser} />
       <Box textAlign="center" fontSize="xl">
         {/* <Grid minH="100vh" p={3}> */}
             <Routes>

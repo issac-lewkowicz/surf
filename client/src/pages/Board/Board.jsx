@@ -32,13 +32,16 @@ import {
   ButtonGroup,
   useToast,
   useDisclosure,
+  Grid,
+  GridItem,
 } from '@chakra-ui/react';
 import CategoryColumn from '../../components/Board/CategoryColumn';
 import { DeleteIcon } from '@chakra-ui/icons';
+import DeleteBoardButton from './DeleteBoardButton';
 
 function Board() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const cancelRef = useRef();
+  const newCategoryButton = useRef();
   let { boardId } = useParams();
   let navigate = useNavigate();
   const toast = useToast();
@@ -62,6 +65,9 @@ function Board() {
       }
     });
   }, []);
+
+ 
+
 
   const onAddCategory = newCategory => {
     const updatedCategoryList = [...categoryList, newCategory];
@@ -93,6 +99,7 @@ function Board() {
           onAddCategory(newCategory);
           handleClick();
           setFormData('');
+          
         });
       } else {
         res.json().then(errors => {
@@ -124,6 +131,16 @@ function Board() {
       }
     });
   };
+
+  const preview = (
+    <EditablePreview
+      py={2}
+      px={4}
+      _hover={{
+        background: useColorModeValue('gray.100', 'gray.700'),
+      }}
+    />
+  );
 
   if (!boardData) return <Spinner />;
   if (!categoryList) return <Spinner />;
@@ -157,85 +174,45 @@ function Board() {
   };
 
   return (
-    <>
-      <Box display="flex">
-        <Button
-          onClick={onOpen}
-          variant="outline"
-          colorScheme="red"
-          alignSelf="left"
-        >
-          <DeleteIcon />
-          &ensp;Delete Board
-        </Button>
-        <AlertDialog
-          isOpen={isOpen}
-          leastDestructiveRef={cancelRef}
-          onClose={onClose}
-        >
-          <AlertDialogOverlay>
-            <AlertDialogContent>
-              <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                Delete Board
-              </AlertDialogHeader>
-
-              <AlertDialogBody>
-                Are you sure? You can't undo this action afterwards.
-              </AlertDialogBody>
-
-              <AlertDialogFooter>
-                <Button ref={cancelRef} onClick={onClose}>
-                  Cancel
-                </Button>
-                <Button colorScheme="red" onClick={handleDeleteBoard} ml={3}>
-                  Delete
-                </Button>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialogOverlay>
-        </AlertDialog>
-      </Box>
-      <Box>
+    <div margin="auto" padding="10px">
+      <Box overflowX="auto" p="30px" height="94.5vh" overflowY="hidden">
+        <DeleteBoardButton handleDeleteBoard={handleDeleteBoard} />
         <Heading>
           <Editable defaultValue={boardData.title} onSubmit={handleEditBoard}>
-            <Tooltip label="Click to edit">
-              <EditablePreview
-                py={2}
-                px={4}
-                _hover={{
-                  background: 'gray.500',
-                }}
-              />
-            </Tooltip>
+            <Tooltip label="Click to edit">{preview}</Tooltip>
             <EditableInput />
           </Editable>
         </Heading>
-        <HStack>
-          <ButtonGroup spacing={10}>
+        <Grid row={1} display="inline-flex" gap={5} justifySelf='start' minWidth="98vw">
+          {/* <ButtonGroup spacing={10}> */}
             {categories}
 
-            <FormControl>
-              {!show && <Button onClick={handleClick}>Add A Category</Button>}
+          {/* </ButtonGroup> */}
+            <GridItem>
+              {!show && <Button ref={newCategoryButton} onClick={handleClick} boxShadow="md">Add A List</Button>}
               {show && (
                 <InputGroup>
+              <VStack align="left">
                   <Input
+                    // htmlSize={4}
+                    width="auto"
                     type="text"
                     name="title"
                     id="category_title_add"
-                    placeholder="Enter Category Title"
+                    placeholder="Enter list title..."
                     value={formData}
                     onChange={e => setFormData(e.target.value)}
                   />
                   <Button type="submit" onClick={handleAddCategory}>
-                    Create Category
+                    Create List
                   </Button>
+              </VStack>
                 </InputGroup>
               )}
-            </FormControl>
-          </ButtonGroup>
-        </HStack>
+            </GridItem>
+        </Grid>
       </Box>
-    </>
+    </div>
   );
 }
 
