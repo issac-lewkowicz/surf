@@ -30,7 +30,7 @@ import {
   Heading,
   Center,
 } from '@chakra-ui/react';
-import Signup from '../Signup/Signup';
+// import Signup from '../Signup/Signup';
 
 function Landing({ setActiveUser, currentUser }) {
   let navigate = useNavigate();
@@ -41,7 +41,7 @@ function Landing({ setActiveUser, currentUser }) {
     if (currentUser !== null) {
       toast({
         title: 'Logged In.',
-        description: 'You are already logged in',
+        description: 'You are already logged in - Redirecting.',
         status: 'success',
         duration: 3000,
         isClosable: true,
