@@ -41,7 +41,7 @@ function Landing({ setActiveUser, currentUser }) {
     if (currentUser !== null) {
       toast({
         title: 'Logged In.',
-        description: 'You are already logged in - Redirecting.',
+        description: 'You are already logged in',
         status: 'success',
         duration: 3000,
         isClosable: true,
