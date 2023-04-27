@@ -1,5 +1,8 @@
 require_relative "boot"
 
+#added to fix rake assets:precompile error
+require 'sprockets/railtie'
+
 require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"

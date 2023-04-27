@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  # url: <%= ENV["DATABASE_URL"] %>
   database: surf_production
   username: surf
   password: <%= ENV["SURF_DATABASE_PASSWORD"] %>
