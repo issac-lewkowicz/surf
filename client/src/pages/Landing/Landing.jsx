@@ -7,7 +7,6 @@ import {
   Text,
   Link,
   VStack,
-  Code,
   Grid,
   theme,
   Button,
